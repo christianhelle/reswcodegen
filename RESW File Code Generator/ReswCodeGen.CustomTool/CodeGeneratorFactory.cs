@@ -1,4 +1,4 @@
-﻿namespace ReswCodeGen.Core
+﻿namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool
 {
     public class CodeGeneratorFactory
     {

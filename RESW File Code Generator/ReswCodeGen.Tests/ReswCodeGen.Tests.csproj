@@ -6,7 +6,7 @@
     <ProjectGuid>{B56DDC92-E86D-46AA-BE28-7ACA670EE9CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReswCodeGen.Tests</RootNamespace>
+    <RootNamespace>ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests</RootNamespace>
     <AssemblyName>ReswCodeGen.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -35,7 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,8 +55,24 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ResourceParserTests.cs" />
     <Compile Include="Spikes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Resources.resw">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReswCodeGen.CustomTool\ReswCodeGen.CustomTool.csproj">
+      <Project>{27E6A696-F14D-43F0-B3CB-5FAB2BE385D0}</Project>
+      <Name>ReswCodeGen.CustomTool</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

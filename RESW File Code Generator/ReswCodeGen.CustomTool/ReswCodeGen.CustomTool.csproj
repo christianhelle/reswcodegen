@@ -7,7 +7,7 @@
     <ProjectGuid>{27E6A696-F14D-43F0-B3CB-5FAB2BE385D0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReswCodeGen.CustomTool</RootNamespace>
+    <RootNamespace>ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool</RootNamespace>
     <AssemblyName>ReswCodeGen.CustomTool</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RegisterForComInterop>true</RegisterForComInterop>
+    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>ReswCodeGen.snk</AssemblyOriginatorKeyFile>
@@ -50,17 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeGeneratorFactory.cs" />
+    <Compile Include="ICodeGenerator.cs" />
+    <Compile Include="IResourceParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceItem.cs" />
     <Compile Include="ReswFileCodeGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ReswCodeGen.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ReswCodeGen.Core\ReswCodeGen.Core.csproj">
-      <Project>{53912EB5-C7DD-486F-9293-8B485AEB0366}</Project>
-      <Name>ReswCodeGen.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
