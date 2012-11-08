@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>ReswCodeGen.snk</AssemblyOriginatorKeyFile>
@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeDomCodeGenerator.cs" />
+    <Compile Include="CodeGenerator.cs" />
     <Compile Include="CodeGeneratorFactory.cs" />
     <Compile Include="ICodeGenerator.cs" />
     <Compile Include="IResourceParser.cs" />

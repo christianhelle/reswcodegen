@@ -4,7 +4,7 @@
     {
         public ICodeGenerator Create(string defaultNamespace, string inputFileContents)
         {
-            return null;
+            return new CodeDomCodeGenerator(new ResourceParser(inputFileContents), defaultNamespace);
         }
     }
 }

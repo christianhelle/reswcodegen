@@ -61,5 +61,50 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
 
             CollectionAssert.AllItemsAreNotNull(list);
         }
+
+        [TestMethod]
+        public void ConstructorSetsReswFileContents()
+        {
+            var target = new ResourceParser(reswFileContents);
+            Assert.IsNotNull(target.ReswFileContents);
+        }
+
+        [TestMethod]
+        public void ParseReturnsResourceItems()
+        {
+            var target = new ResourceParser(reswFileContents);
+            var actual = target.Parse();
+            Assert.IsNotNull(actual);
+        }
+
+        [TestMethod]
+        public void ParseReturnedResourceItemsContainsName()
+        {
+            var target = new ResourceParser(reswFileContents);
+            var actual = target.Parse();
+
+            foreach (var item in actual)
+                Assert.IsNotNull(item.Name);
+        }
+
+        [TestMethod]
+        public void ParseReturnedResourceItemsContainsValue()
+        {
+            var target = new ResourceParser(reswFileContents);
+            var actual = target.Parse();
+
+            foreach (var item in actual)
+                Assert.IsNotNull(item.Value);
+        }
+
+        [TestMethod]
+        public void ParseReturnedResourceItemsContainsComment()
+        {
+            var target = new ResourceParser(reswFileContents);
+            var actual = target.Parse();
+
+            foreach (var item in actual)
+                Assert.IsNotNull(item.Comment);
+        }
     }
 }
