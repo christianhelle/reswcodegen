@@ -57,7 +57,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool
             var resources = ResourceParser.Parse();
             foreach (var item in resources)
             {
-                if (item.Name.Contains("."))
+                if (string.IsNullOrEmpty(item.Name) || item.Name.Contains("."))
                     continue;
 
                 var property = new CodeMemberProperty
@@ -69,7 +69,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool
                                    };
 
                 property.Comments.Add(new CodeCommentStatement("<summary>", true));
-                property.Comments.Add(new CodeCommentStatement("Localized resource similar to \"" + item.Value + "\"", true));
+                property.Comments.Add(new CodeCommentStatement("Localized resource similar to \"" + (item.Value ?? item.Name) + "\"", true));
                 property.Comments.Add(new CodeCommentStatement("</summary>", true));
                 property.GetStatements.Add(
                     new CodeMethodReturnStatement(

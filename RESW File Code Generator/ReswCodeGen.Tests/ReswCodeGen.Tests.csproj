@@ -57,8 +57,8 @@
   <ItemGroup>
     <Compile Include="CodeGeneratorFactoryTests.cs" />
     <Compile Include="CodeGeneratorTests.cs" />
+    <Compile Include="ResourceParserErrorHandlingTests.cs" />
     <Compile Include="ResourceParserTests.cs" />
-    <Compile Include="Spikes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +69,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Resources\ResourcesWithoutValues.resw">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ResourcesWithoutComments.resw">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ReswCodeGen.CustomTool\ReswCodeGen.CustomTool.csproj">

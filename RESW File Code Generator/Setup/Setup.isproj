@@ -32,5 +32,9 @@
 			<Name>ReswCodeGen.CustomTool</Name>
 			<Project>{27E6A696-F14D-43F0-B3CB-5FAB2BE385D0}</Project>
 		</ProjectReference>
+		<ProjectReference Include="..\ReswCodeGen.CustomActions\ReswCodeGen.CustomActions.csproj">
+			<Name>ReswCodeGen.CustomActions</Name>
+			<Project>{4180087A-7F13-409B-AFE9-505371874A68}</Project>
+		</ProjectReference>
 	</ItemGroup>
 </Project>
