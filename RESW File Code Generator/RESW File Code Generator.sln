@@ -6,6 +6,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReswCodeGen.Tests", "ReswCodeGen.Tests\ReswCodeGen.Tests.csproj", "{B56DDC92-E86D-46AA-BE28-7ACA670EE9CE}"
 EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Setup", "Setup\Setup.isproj", "{F2C091E7-8B4A-4629-BF80-738294F5FFB8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4180087A-7F13-409B-AFE9-505371874A68} = {4180087A-7F13-409B-AFE9-505371874A68}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReswCodeGen.CustomActions", "ReswCodeGen.CustomActions\ReswCodeGen.CustomActions.csproj", "{4180087A-7F13-409B-AFE9-505371874A68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +50,16 @@ Global
 		{F2C091E7-8B4A-4629-BF80-738294F5FFB8}.Release|Any CPU.Build.0 = CD_ROM
 		{F2C091E7-8B4A-4629-BF80-738294F5FFB8}.SingleImage|Any CPU.ActiveCfg = SingleImage
 		{F2C091E7-8B4A-4629-BF80-738294F5FFB8}.SingleImage|Any CPU.Build.0 = SingleImage
+		{4180087A-7F13-409B-AFE9-505371874A68}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{4180087A-7F13-409B-AFE9-505371874A68}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{4180087A-7F13-409B-AFE9-505371874A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4180087A-7F13-409B-AFE9-505371874A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4180087A-7F13-409B-AFE9-505371874A68}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{4180087A-7F13-409B-AFE9-505371874A68}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{4180087A-7F13-409B-AFE9-505371874A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4180087A-7F13-409B-AFE9-505371874A68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4180087A-7F13-409B-AFE9-505371874A68}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{4180087A-7F13-409B-AFE9-505371874A68}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

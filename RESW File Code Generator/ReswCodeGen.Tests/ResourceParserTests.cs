@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -40,26 +37,6 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
             var resourcs = doc.Descendants("data");
             Assert.IsNotNull(resourcs);
             Assert.AreNotEqual(0, resourcs.Count());
-        }
-
-        [TestMethod]
-        public void CanParseTestReswFileContentsIntoResourceItems()
-        {
-            var doc = XDocument.Parse(reswFileContents);
-
-            var list = new List<ResourceItem>();
-
-            foreach (var element in doc.Descendants("data"))
-            {
-                list.Add(new ResourceItem
-                             {
-                                 Name = element.Attribute("name").Value,
-                                 Value = element.Descendants("value").First().Value,
-                                 Comment = element.Descendants("comment").First().Value
-                             });
-            }
-
-            CollectionAssert.AllItemsAreNotNull(list);
         }
 
         [TestMethod]
