@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ReswCodeGen.CustomTool")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("ResW File Code Generator Custom Tool")]
+[assembly: AssemblyDescription("A Visual Studio 2012 Custom Tool for generating a strongly typed helper class for accessing localized resources from a .ResW file.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ReswCodeGen.CustomTool")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyProduct("ResW File Code Generator Custom Tool")]
+[assembly: AssemblyCopyright("Copyright © Christian Resma Helle 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.*")]

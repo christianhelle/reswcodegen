@@ -61,6 +61,8 @@
     <Compile Include="ResourceItem.cs" />
     <Compile Include="ResourceParser.cs" />
     <Compile Include="ReswFileCodeGenerator.cs" />
+    <Compile Include="ReswFileCSharpCodeGenerator.cs" />
+    <Compile Include="ReswFileVisualBasicCodeGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ReswCodeGen.snk" />
