@@ -3,7 +3,7 @@ using Microsoft.VisualBasic;
 
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool
 {
-    [Guid("704DB723-AB03-4369-A2D7-0C857E96C94C")]
+    [Guid("92DFB543-7138-419B-99D9-90CC77607671")]
     [ComVisible(true)]
     public class ReswFileVisualBasicCodeGenerator : ReswFileCodeGenerator
     {
