@@ -8,6 +8,7 @@ EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Setup", "Setup\Setup.isproj", "{F2C091E7-8B4A-4629-BF80-738294F5FFB8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4180087A-7F13-409B-AFE9-505371874A68} = {4180087A-7F13-409B-AFE9-505371874A68}
+		{27E6A696-F14D-43F0-B3CB-5FAB2BE385D0} = {27E6A696-F14D-43F0-B3CB-5FAB2BE385D0}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReswCodeGen.CustomActions", "ReswCodeGen.CustomActions\ReswCodeGen.CustomActions.csproj", "{4180087A-7F13-409B-AFE9-505371874A68}"

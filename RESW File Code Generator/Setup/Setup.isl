@@ -345,6 +345,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{C30F75D3-90B0-458C-820A-E2735DE9256F}</td><td>GlobalAssemblyCache</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{941F8DF4-5233-4CF3-BD0A-2232A782181C}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ReswCodeGen.CustomActions.Primary_output</td><td>{EAFEBCD5-9627-4A2D-8447-31F31BCBCBE6}</td><td>INSTALLDIR</td><td>2</td><td/><td>reswcodegen.customactions.pr</td><td>65</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ReswCodeGen.CustomTool.Debug_Symbols</td><td>{1FFC158C-95A0-4492-9FBC-EF61B27EA808}</td><td>INSTALLDIR</td><td>2</td><td/><td>reswcodegen.customtool.debug</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ReswCodeGen.CustomTool.Primary_output</td><td>{DC17C7A5-6FF1-4B58-90AD-C449CDB05EAD}</td><td>INSTALLDIR</td><td>2</td><td/><td>reswcodegen.customtool.prima</td><td>36</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ReswCodeGen.CustomTool.Primary_output2</td><td>{0016CD86-CF97-41BD-BC13-1B11FE8A2DFA}</td><td>GlobalAssemblyCache</td><td>2</td><td/><td>reswcodegen.customtool.prima2</td><td>36</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
@@ -557,7 +558,7 @@
 		<row><td>LicenseAgreement</td><td>DlgLine</td><td>Line</td><td>48</td><td>234</td><td>326</td><td>0</td><td>1</td><td/><td/><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>DlgTitle</td><td>Text</td><td>13</td><td>6</td><td>292</td><td>25</td><td>65539</td><td/><td>##IDS__IsLicenseDlg_LicenseAgreement##</td><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>PushButton</td><td>301</td><td>188</td><td>65</td><td>17</td><td>3</td><td/><td>##IDS_PRINT_BUTTON##</td><td>Agree</td><td/><td>0</td><td/><td/><td/></row>
-		<row><td>LicenseAgreement</td><td>Memo</td><td>ScrollableText</td><td>8</td><td>55</td><td>358</td><td>130</td><td>7</td><td/><td/><td/><td/><td>0</td><td/><td>C:\Projects\CodePlex\reswcodegen\RESW File Code Generator\License.rtf</td><td/></row>
+		<row><td>LicenseAgreement</td><td>Memo</td><td>ScrollableText</td><td>8</td><td>55</td><td>358</td><td>130</td><td>7</td><td/><td/><td/><td/><td>0</td><td/><td>C:\Projects\CodePlex\ResW File Code Generator\RESW File Code Generator\Setup\License.rtf</td><td/></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_NEXT##</td><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>PushButton</td><td>164</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_BACK##</td><td>Next</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>MaintenanceType</td><td>Banner</td><td>Bitmap</td><td>0</td><td>0</td><td>374</td><td>44</td><td>1</td><td/><td/><td/><td/><td>0</td><td/><td/><td>NewBinary1</td></row>
@@ -944,7 +945,7 @@
 		<row><td>InstallChangeFolder</td><td>Up</td><td>DirectoryListUp</td><td>0</td><td>1</td><td>0</td></row>
 		<row><td>InstallWelcome</td><td>Back</td><td>NewDialog</td><td>SplashBitmap</td><td>Display_IsBitmapDlg</td><td>0</td></row>
 		<row><td>InstallWelcome</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
-		<row><td>InstallWelcome</td><td>Next</td><td>NewDialog</td><td>LicenseAgreement</td><td>1</td><td>0</td></row>
+		<row><td>InstallWelcome</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>NOT Installed</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
@@ -979,7 +980,7 @@
 		<row><td>ReadmeInformation</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>ReadmeInformation</td><td>Next</td><td>NewDialog</td><td>CustomerInformation</td><td>1</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CustomSetup</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>NOT Installed</td><td>1</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>NOT Installed</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>MaintenanceType</td><td>Installed AND _IsMaintenance = "Reinstall"</td><td>3</td></row>
 		<row><td>ReadyToInstall</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>ReadyToInstall</td><td>InstallNow</td><td>EndDialog</td><td>Return</td><td>OutOfNoRbDiskSpace &lt;&gt; 1</td><td>0</td></row>
@@ -1882,6 +1883,7 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>ReswCodeGen.CustomActions.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>ReswCodeGen.CustomTool.Debug_Symbols</td></row>
 		<row><td>AlwaysInstall</td><td>ReswCodeGen.CustomTool.Primary_output</td></row>
 		<row><td>AlwaysInstall</td><td>ReswCodeGen.CustomTool.Primary_output2</td></row>
 	</table>
@@ -1899,6 +1901,7 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>reswcodegen.customactions.pr</td><td>ReswCodeGen.CustomActions.Primary_output</td><td>ReswCodeGen.CustomActions.Primary output</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;ReswCodeGen.CustomActions&gt;|Built</td><td>3</td><td/></row>
+		<row><td>reswcodegen.customtool.debug</td><td>ReswCodeGen.CustomTool.Debug_Symbols</td><td>ReswCodeGen.CustomTool.Debug Symbols</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ReswCodeGen.CustomTool&gt;|Symbols</td><td>3</td><td/></row>
 		<row><td>reswcodegen.customtool.prima</td><td>ReswCodeGen.CustomTool.Primary_output</td><td>ReswCodeGen.CustomTool.Primary output</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;ReswCodeGen.CustomTool&gt;|Built</td><td>3</td><td/></row>
 		<row><td>reswcodegen.customtool.prima2</td><td>ReswCodeGen.CustomTool.Primary_output2</td><td>ReswCodeGen.CustomTool.Primary output</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;ReswCodeGen.CustomTool&gt;|Built</td><td>3</td><td/></row>
 	</table>
@@ -2161,6 +2164,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_35E60FAB_A173_41F5_A1EC_7BCCE932412C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_489A804A_6D51_40F1_8AC5_810DEED8A068_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ReswCodeGen.CustomActions.Primary_output</td><td/><td/><td>_727A98DF_AAF3_4280_9A5A_31CBEA1BD501_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ReswCodeGen.CustomTool.Debug_Symbols</td><td/><td/><td>_6359AF34_6844_4C44_A9BD_95D4C6F0F54F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ReswCodeGen.CustomTool.Primary_output</td><td/><td/><td>_002FDE30_5929_4810_8173_8FE579BBEDB5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ReswCodeGen.CustomTool.Primary_output2</td><td/><td/><td>_76455DB9_D187_4C4B_86B1_73BED23AEA47_FILTER</td><td/><td/><td/><td/></row>
 	</table>
@@ -2795,7 +2799,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Christian Resma Helle</td><td>0</td><td/><td>1570797974</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Christian Resma Helle</td><td>0</td><td/><td>1704985068</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>1168132439</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>1168132439</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>1168132439</td></row>
@@ -3895,10 +3899,10 @@
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>1168132439</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>1168132439</td></row>
 		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>1168134487</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>http://reswcodegen.codeplex.com</td><td>0</td><td/><td>1570808406</td></row>
-		<row><td>ID_STRING3</td><td>1033</td><td>Christian Resma Helle</td><td>0</td><td/><td>1570797974</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>http://www.ChristianResmaHelle.com</td><td>0</td><td/><td>1704985068</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>Christian Resma Helle</td><td>0</td><td/><td>1704985068</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>ResW File Code Generator Installer</td><td>0</td><td/><td>1570789974</td></row>
-		<row><td>ID_STRING5</td><td>1033</td><td>http://reswcodegen.codeplex.com/documentation</td><td>0</td><td/><td>1570777718</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>http://www.ChristianResmaHelle.com/documentation</td><td>0</td><td/><td>1704985068</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>1168132439</td></row>
 	</table>
 
@@ -4589,23 +4593,38 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<row><td>Registry1</td><td>2</td><td>SOFTWARE\Wow6432Node</td><td/><td/><td>ISX_DEFAULTCOMPONENT1</td><td>1</td></row>
 		<row><td>Registry10</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\Generators\{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}\ReswFileCodeGenerator</td><td>CLSID</td><td>{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
 		<row><td>Registry11</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\Generators\{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}\ReswFileCodeGenerator</td><td>GeneratesDesignTimeSource</td><td>#1</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
-		<row><td>Registry17</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{704DB723-AB03-4369-A2D7-0C857E96C94C}</td><td/><td>ResW File Code Generator (VB)</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
-		<row><td>Registry18</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{704DB723-AB03-4369-A2D7-0C857E96C94C}</td><td>InprocServer32</td><td>[INSTALLDIR]ReswCodeGen.CustomTool.dll</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
-		<row><td>Registry19</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{704DB723-AB03-4369-A2D7-0C857E96C94C}</td><td>ThreadingModel</td><td>Both</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry12</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\CLSID\{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td>InprocServer32</td><td>[INSTALLDIR]ReswCodeGen.CustomTool.dll</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry13</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\CLSID\{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td>ThreadingModel</td><td>Both</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry14</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\CLSID\{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td>Class</td><td>ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.ReswFileCSharpCodeGenerator</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry15</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\CLSID\{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td>Assembly</td><td>ReswCodeGen.CustomTool</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry16</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\CLSID\{92DFB543-7138-419B-99D9-90CC77607671}</td><td/><td>ResW File Code Generator (VB)</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry17</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{92DFB543-7138-419B-99D9-90CC77607671}</td><td/><td>ResW File Code Generator (VB)</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry18</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{92DFB543-7138-419B-99D9-90CC77607671}</td><td>InprocServer32</td><td>[INSTALLDIR]ReswCodeGen.CustomTool.dll</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry19</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{92DFB543-7138-419B-99D9-90CC77607671}</td><td>ThreadingModel</td><td>Both</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
 		<row><td>Registry2</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td/><td>ResW File Code Generator (C#)</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
-		<row><td>Registry20</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{704DB723-AB03-4369-A2D7-0C857E96C94C}</td><td>Class</td><td>ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.ReswFileVisualBasicCodeGenerator</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
-		<row><td>Registry21</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{704DB723-AB03-4369-A2D7-0C857E96C94C}</td><td>Assembly</td><td>ReswCodeGen.CustomTool</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
-		<row><td>Registry28</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\Generators\{164B10B9-B200-11D0-8C61-00A0C91E29D5}\ReswFileCodeGenerator</td><td>CLSID</td><td>{704DB723-AB03-4369-A2D7-0C857E96C94C}</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry20</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{92DFB543-7138-419B-99D9-90CC77607671}</td><td>Class</td><td>ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.ReswFileVisualBasicCodeGenerator</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry21</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{92DFB543-7138-419B-99D9-90CC77607671}</td><td>Assembly</td><td>ReswCodeGen.CustomTool</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry22</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\CLSID\{92DFB543-7138-419B-99D9-90CC77607671}</td><td>InprocServer32</td><td>[INSTALLDIR]ReswCodeGen.CustomTool.dll</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry23</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\CLSID\{92DFB543-7138-419B-99D9-90CC77607671}</td><td>ThreadingModel</td><td>Both</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry24</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\CLSID\{92DFB543-7138-419B-99D9-90CC77607671}</td><td>Class</td><td>ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.ReswFileVisualBasicCodeGenerator</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry25</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\CLSID\{92DFB543-7138-419B-99D9-90CC77607671}</td><td>Assembly</td><td>ReswCodeGen.CustomTool</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry26</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\Generators\{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}\ReswFileCodeGenerator</td><td>CLSID</td><td>{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry27</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\Generators\{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}\ReswFileCodeGenerator</td><td>GeneratesDesignTimeSource</td><td>#1</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry28</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\Generators\{164B10B9-B200-11D0-8C61-00A0C91E29D5}\ReswFileCodeGenerator</td><td>CLSID</td><td>{92DFB543-7138-419B-99D9-90CC77607671}</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
 		<row><td>Registry29</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\Generators\{164B10B9-B200-11D0-8C61-00A0C91E29D5}\ReswFileCodeGenerator</td><td>GeneratesDesignTimeSource</td><td>#1</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
 		<row><td>Registry3</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID</td><td/><td/><td>ISX_DEFAULTCOMPONENT1</td><td>1</td></row>
 		<row><td>Registry30</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\Generators\{164B10B9-B200-11D0-8C61-00A0C91E29D5}\ReswFileCodeGenerator</td><td/><td>ResW File Code Generator (VB)</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry31</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\Generators\{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}\ReswFileCodeGenerator</td><td/><td>ResW File Code Generator (C#)</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry32</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\Generators\{164B10B9-B200-11D0-8C61-00A0C91E29D5}\ReswFileCodeGenerator</td><td>CLSID</td><td>{92DFB543-7138-419B-99D9-90CC77607671}</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry33</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\Generators\{164B10B9-B200-11D0-8C61-00A0C91E29D5}\ReswFileCodeGenerator</td><td>GeneratesDesignTimeSource</td><td>#1</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
+		<row><td>Registry34</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\Generators\{164B10B9-B200-11D0-8C61-00A0C91E29D5}\ReswFileCodeGenerator</td><td/><td>ResW File Code Generator (VB)</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
 		<row><td>Registry4</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\Generators\{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}</td><td/><td/><td>ISX_DEFAULTCOMPONENT1</td><td>1</td></row>
 		<row><td>Registry5</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td>InprocServer32</td><td>[INSTALLDIR]ReswCodeGen.CustomTool.dll</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
 		<row><td>Registry6</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td>ThreadingModel</td><td>Both</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
 		<row><td>Registry7</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td>Class</td><td>ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.ReswFileCSharpCodeGenerator</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
 		<row><td>Registry8</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\CLSID\{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td>Assembly</td><td>ReswCodeGen.CustomTool</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
 		<row><td>Registry9</td><td>2</td><td>SOFTWARE\Microsoft\VisualStudio\11.0\Generators\{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}\ReswFileCodeGenerator</td><td/><td>ResW File Code Generator (C#)</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
-		<row><td>_EE9C5AB623A16CA35EEC9C7995C83CC1</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio</td><td/><td/><td>ISX_DEFAULTCOMPONENT1</td><td>1</td></row>
+		<row><td>_EE9C5AB623A16CA35EEC9C7995C83CC1</td><td>2</td><td>SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\CLSID\{98983F6D-BC77-46AC-BA5A-8D9E8763F0D2}</td><td/><td>ResW File Code Generator (C#)</td><td>ISX_DEFAULTCOMPONENT1</td><td>0</td></row>
 	</table>
 
 	<table name="RemoveFile">
