@@ -21,16 +21,17 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool
         public abstract int DefaultExtension(out string pbstrDefaultExtension);
 
         public virtual int Generate(string wszInputFilePath,
-                            string bstrInputFileContents,
-                            string wszDefaultNamespace,
-                            IntPtr[] rgbOutputFileContents,
-                            out uint pcbOutput,
-                            IVsGeneratorProgress pGenerateProgress)
+                                    string bstrInputFileContents,
+                                    string wszDefaultNamespace,
+                                    IntPtr[] rgbOutputFileContents,
+                                    out uint pcbOutput,
+                                    IVsGeneratorProgress pGenerateProgress)
         {
             try
             {
+                var className = ClassNameExtractor.GetClassName(wszInputFilePath);
                 var factory = new CodeGeneratorFactory();
-                var codeGenerator = factory.Create(wszDefaultNamespace, bstrInputFileContents, codeDomProvider);
+                var codeGenerator = factory.Create(className, wszDefaultNamespace, bstrInputFileContents, codeDomProvider);
                 var code = codeGenerator.GenerateCode();
 
                 var data = Encoding.UTF8.GetBytes(code);

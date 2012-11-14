@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
@@ -52,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassNameExtractor.cs" />
     <Compile Include="CodeDomCodeGenerator.cs" />
     <Compile Include="CodeGenerator.cs" />
     <Compile Include="CodeGeneratorFactory.cs" />

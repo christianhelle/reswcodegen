@@ -55,6 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ClassNameExtractorTests.cs" />
     <Compile Include="CodeGeneratorFactoryTests.cs" />
     <Compile Include="CodeGeneratorTests.cs" />
     <Compile Include="ResourceParserErrorHandlingTests.cs" />
