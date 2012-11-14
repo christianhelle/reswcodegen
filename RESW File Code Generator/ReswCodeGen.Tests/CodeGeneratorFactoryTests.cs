@@ -8,6 +8,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
     public class CodeGeneratorFactoryTests
     {
         private string reswFileContents;
+        private const string ClassName = "C:\\Test\\Resources\\Strings.resw";
 
         [TestInitialize]
         public void Initialize()
@@ -19,7 +20,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         public void CodeGeneratorFactoryReturnsValidInstance()
         {
             var target = new CodeGeneratorFactory();
-            var actual = target.Create("TestApp", reswFileContents);
+            var actual = target.Create(ClassName, "TestApp", reswFileContents);
             Assert.IsNotNull(actual);
         }
     }

@@ -10,13 +10,15 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool
 {
     public class CodeDomCodeGenerator : CodeGenerator
     {
+        private readonly string className;
         private readonly CodeNamespace codeNamespace;
         private readonly CodeCompileUnit compileUnit;
         private readonly CodeDomProvider provider;
 
-        public CodeDomCodeGenerator(IResourceParser resourceParser, string defaultNamespace, CodeDomProvider codeDomProvider = null)
+        public CodeDomCodeGenerator(IResourceParser resourceParser, string className, string defaultNamespace, CodeDomProvider codeDomProvider = null)
             : base(resourceParser, defaultNamespace)
         {
+            this.className = className;
             compileUnit = new CodeCompileUnit();
             provider = codeDomProvider ?? new CSharpCodeProvider();
             codeNamespace = new CodeNamespace(defaultNamespace);
@@ -39,7 +41,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool
 
             codeNamespace.Imports.Add(new CodeNamespaceImport("Windows.ApplicationModel.Resources"));
 
-            var targetClass = new CodeTypeDeclaration("Resources")
+            var targetClass = new CodeTypeDeclaration(className)
                                   {
                                       IsClass = true,
                                       IsPartial = true,
