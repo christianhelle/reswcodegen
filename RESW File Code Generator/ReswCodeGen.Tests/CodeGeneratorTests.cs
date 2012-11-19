@@ -18,7 +18,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         {
             reswFileContents = File.ReadAllText(FilePath);
 
-            target = new CodeGeneratorFactory().Create(FilePath, "TestApp", reswFileContents);
+            target = new CodeGeneratorFactory().Create(FilePath.Replace(".resw", string.Empty), "TestApp", reswFileContents);
             actual = target.GenerateCode();
         }
 
@@ -32,7 +32,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         public void GeneratedCodeContainsPropertiesDefinedInResources()
         {
             var resourceItems = target.ResourceParser.Parse();
-  
+
             foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
                 Assert.IsTrue(actual.Contains("public static string " + item.Name));
         }
@@ -41,7 +41,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         public void GeneratedCodePropertiesContainsCommentsSimilarToValuesDefinedInResources()
         {
             var resourceItems = target.ResourceParser.Parse();
-       
+
             foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
                 Assert.IsTrue(actual.Contains("Localized resource similar to \"" + item.Value + "\""));
         }
@@ -50,6 +50,12 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         public void ClassNameEqualsFileNameWithoutExtension()
         {
             Assert.IsTrue(actual.Contains("class Resources"));
+        }
+
+        [TestMethod]
+        public void ResourceLoaderInitializedWithClassName()
+        {
+            Assert.IsTrue(actual.Contains("new ResourceLoader(\"Resources\");"));
         }
     }
 }

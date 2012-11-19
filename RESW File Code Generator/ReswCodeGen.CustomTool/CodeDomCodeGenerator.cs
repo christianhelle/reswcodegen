@@ -52,7 +52,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool
             var resourceLoaderField = new CodeMemberField(resourceLoaderType, "resourceLoader")
                                           {
                                               Attributes = MemberAttributes.Private | MemberAttributes.Static | MemberAttributes.Final,
-                                              InitExpression = new CodeObjectCreateExpression(resourceLoaderType)
+                                              InitExpression = new CodeObjectCreateExpression(resourceLoaderType, new CodePrimitiveExpression(className))
                                           };
             targetClass.Members.Add(resourceLoaderField);
 
