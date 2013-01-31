@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using Microsoft.CSharp;
 
@@ -51,10 +52,65 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool
             const string resourceLoaderType = "ResourceLoader";
             var resourceLoaderField = new CodeMemberField(resourceLoaderType, "resourceLoader")
                                           {
-                                              Attributes = MemberAttributes.Private | MemberAttributes.Static | MemberAttributes.Final,
-                                              InitExpression = new CodeObjectCreateExpression(resourceLoaderType, new CodePrimitiveExpression(className))
+                                              Attributes = MemberAttributes.Private | MemberAttributes.Static | MemberAttributes.Final
                                           };
             targetClass.Members.Add(resourceLoaderField);
+
+            var constructor = new CodeTypeConstructor();
+
+            var executingAssemblyVar = new CodeVariableDeclarationStatement(typeof(string), "executingAssemblyName");
+            var executingAssemblyInit = new CodeAssignStatement(
+                new CodeVariableReferenceExpression("executingAssemblyName"),
+                new CodeSnippetExpression("Windows.UI.Xaml.Application.Current.GetType().AssemblyQualifiedName"));
+            var executingAssemblySplit = new CodeVariableDeclarationStatement(typeof(string[]), "executingAssemblySplit");
+            var executingAssemblyInit2 = new CodeAssignStatement(
+                new CodeVariableReferenceExpression("executingAssemblySplit"),
+                new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("executingAssemblyName"), "Split", new CodePrimitiveExpression(',')));
+            var executingAssemblyInit3 = new CodeAssignStatement(
+                new CodeVariableReferenceExpression("executingAssemblyName"),
+                new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("executingAssemblySplit"), new CodePrimitiveExpression(1)));
+
+            var currentAssemblyVar = new CodeVariableDeclarationStatement(typeof(string), "currentAssemblyName");
+            var currentAssemblyInit = new CodeAssignStatement(
+                new CodeVariableReferenceExpression("currentAssemblyName"),
+                new CodePropertyReferenceExpression(new CodeTypeOfExpression(className), "AssemblyQualifiedName"));
+            var currentAssemblySplit = new CodeVariableDeclarationStatement(typeof(string[]), "currentAssemblySplit");
+            var currentAssemblyInit2 = new CodeAssignStatement(
+                 new CodeVariableReferenceExpression("currentAssemblySplit"),
+                 new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("currentAssemblyName"), "Split", new CodePrimitiveExpression(',')));
+            var currentAssemblyInit3 = new CodeAssignStatement(
+                new CodeVariableReferenceExpression("currentAssemblyName"),
+                new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("currentAssemblySplit"), new CodePrimitiveExpression(1)));
+
+            var createResourceLoader = new CodeConditionStatement(
+                new CodeSnippetExpression("executingAssemblyName.Equals(currentAssemblyName)"),
+                new CodeStatement[] // true
+                    {
+                        new CodeAssignStatement(
+                            new CodeFieldReferenceExpression(null, "resourceLoader"),
+                            new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader")))
+                    },
+                new CodeStatement[] // false
+                    {
+                        new CodeAssignStatement(
+                            new CodeFieldReferenceExpression(null, "resourceLoader"),
+                            new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
+                                                           new CodeSnippetExpression("currentAssemblyName + \"/Resources\"")))
+                    });
+
+            constructor.Statements.Add(executingAssemblyVar);
+            constructor.Statements.Add(executingAssemblyInit);
+            constructor.Statements.Add(executingAssemblySplit);
+            constructor.Statements.Add(executingAssemblyInit2);
+            constructor.Statements.Add(executingAssemblyInit3);
+            constructor.Statements.Add(currentAssemblyVar);
+            constructor.Statements.Add(currentAssemblyInit);
+            constructor.Statements.Add(currentAssemblySplit);
+            constructor.Statements.Add(currentAssemblyInit2);
+            constructor.Statements.Add(currentAssemblyInit3);
+            constructor.Statements.Add(createResourceLoader);
+
+            targetClass.Members.Add(constructor);
 
             var resources = ResourceParser.Parse();
             foreach (var item in resources)
