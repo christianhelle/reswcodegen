@@ -6,7 +6,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
 {
     [TestClass]
     [DeploymentItem("Resources/Resources.resw")]
-    public class CodeGeneratorTests
+    public class CSharpCodeGeneratorTests
     {
         private string reswFileContents;
         private const string FilePath = "Resources.resw";
@@ -55,7 +55,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         [TestMethod]
         public void ResourceLoaderInitializedWithClassName()
         {
-            Assert.IsTrue(actual.Contains("new ResourceLoader(\"Resources\");"));
+            Assert.IsTrue(actual.Contains("new ResourceLoader(currentAssemblyName + \"/Resources\");"));
         }
     }
 }
