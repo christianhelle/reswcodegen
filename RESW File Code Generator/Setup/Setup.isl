@@ -4529,7 +4529,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{5155A18D-3C84-464C-B44C-315DE88B651D}</td><td/></row>
 		<row><td>ProductName</td><td>ResW File Code Generator</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.2</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.3</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
