@@ -88,14 +88,15 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool
                     {
                         new CodeAssignStatement(
                             new CodeFieldReferenceExpression(null, "resourceLoader"),
-                            new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader")))
+                            new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
+                                                           new CodeSnippetExpression("\"" + className + "\"")))
                     },
                 new CodeStatement[] // false
                     {
                         new CodeAssignStatement(
                             new CodeFieldReferenceExpression(null, "resourceLoader"),
                             new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
-                                                           new CodeSnippetExpression("currentAssemblyName + \"/Resources\"")))
+                                                           new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
                     });
 
             constructor.Statements.Add(executingAssemblyVar);
