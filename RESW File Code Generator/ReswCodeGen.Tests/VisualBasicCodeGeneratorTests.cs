@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool;
 using Microsoft.VisualBasic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,7 +10,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
     [DeploymentItem("Resources/Resources.resw")]
     public class VisualBasicCodeGeneratorTests
     {
-        private const string FilePath = "Resources.resw";
+        private const string FILE_PATH = "Resources.resw";
         private string actual;
         private string reswFileContents;
         private ICodeGenerator target;
@@ -17,9 +18,9 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         [TestInitialize]
         public void Initialize()
         {
-            reswFileContents = File.ReadAllText(FilePath);
+            reswFileContents = File.ReadAllText(FILE_PATH);
 
-            target = new CodeGeneratorFactory().Create(FilePath.Replace(".resw", string.Empty), "TestApp", reswFileContents, new VBCodeProvider());
+            target = new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", reswFileContents, new VBCodeProvider());
             actual = target.GenerateCode();
         }
 

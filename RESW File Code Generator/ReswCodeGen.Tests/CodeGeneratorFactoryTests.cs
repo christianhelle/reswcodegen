@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
