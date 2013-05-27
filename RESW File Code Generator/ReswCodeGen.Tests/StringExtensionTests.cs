@@ -21,8 +21,8 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
 
             uint length;
             var ptr = expected.ConvertToIntPtr(out length);
-            var actual = Marshal.PtrToStringAuto(ptr);
-            Assert.AreEqual(target, actual);
+            var actual = Marshal.PtrToStringAnsi(ptr);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
