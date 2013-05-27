@@ -61,6 +61,7 @@
     <Compile Include="ResourceParserErrorHandlingTests.cs" />
     <Compile Include="ResourceParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensionTests.cs" />
     <Compile Include="VisualBasicCodeGeneratorTests.cs" />
   </ItemGroup>
   <ItemGroup>
