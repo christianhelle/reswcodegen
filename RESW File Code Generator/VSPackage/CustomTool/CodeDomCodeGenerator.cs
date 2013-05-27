@@ -8,7 +8,7 @@ using Microsoft.CSharp;
 
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 {
-    public class CodeDomCodeGenerator : CodeGenerator
+    public class CodeDomCodeGenerator : CodeGenerator, IDisposable
     {
         private readonly string className;
         private readonly CodeNamespace codeNamespace;
@@ -155,5 +155,31 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 
             return code.ToString();
         }
+
+        #region IDisposable
+        
+        private bool disposed;
+
+        ~CodeDomCodeGenerator()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool dispose)
+        {
+            if (disposed)
+                return;
+            disposed = true;
+
+            if (dispose)
+                provider.Dispose();
+        }         
+
+        #endregion
     }
 }
