@@ -35,12 +35,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 var codeGenerator = factory.Create(className, wszDefaultNamespace, bstrInputFileContents, codeDomProvider);
                 var code = codeGenerator.GenerateCode();
 
-                var data = Encoding.UTF8.GetBytes(code);
-
-                rgbOutputFileContents[0] = Marshal.AllocCoTaskMem(data.Length);
-                Marshal.Copy(data, 0, rgbOutputFileContents[0], data.Length);
-
-                pcbOutput = (uint)data.Length;
+                rgbOutputFileContents[0] = code.ConvertToIntPtr(out pcbOutput);
             }
             catch (Exception e)
             {
