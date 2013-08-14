@@ -26,13 +26,13 @@ namespace VSPackage_UnitTests
         [TestMethod()]
         public void CreateInstance()
         {
-            VSPackagePackage package = new VSPackagePackage();
+            VisualStudio2012Package package = new VisualStudio2012Package();
         }
 
         [TestMethod()]
         public void IsIVsPackage()
         {
-            VSPackagePackage package = new VSPackagePackage();
+            VisualStudio2012Package package = new VisualStudio2012Package();
             Assert.IsNotNull(package as IVsPackage, "The object does not implement IVsPackage");
         }
 
@@ -40,7 +40,7 @@ namespace VSPackage_UnitTests
         public void SetSite()
         {
             // Create the package
-            IVsPackage package = new VSPackagePackage() as IVsPackage;
+            IVsPackage package = new VisualStudio2012Package() as IVsPackage;
             Assert.IsNotNull(package, "The object does not implement IVsPackage");
 
             // Create a basic service provider

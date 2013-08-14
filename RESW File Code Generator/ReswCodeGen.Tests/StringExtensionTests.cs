@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Runtime.InteropServices;
 using ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,19 +9,31 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
     [DeploymentItem("Resources/Resources.resw")]
     public class StringExtensionTests
     {
-        private const string FILE_PATH = "Resources.resw";
+        const string TEXT = "test";
 
         [TestMethod]
-        public void LineEndingsAreSame()
+        public void ConvertToIntPtrDoesNotReturnZero()
         {
-            var reswFileContents = File.ReadAllText(FILE_PATH);
-            var target = new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", reswFileContents);
-            var expected = target.GenerateCode();
+            uint len;
+            var ptr = TEXT.ConvertToIntPtr(out len);
+            Assert.AreNotEqual(IntPtr.Zero, ptr);
+        }
 
-            uint length;
-            var ptr = expected.ConvertToIntPtr(out length);
-            var actual = Marshal.PtrToStringAnsi(ptr);
-            Assert.AreEqual(expected, actual);
+        [TestMethod]
+        public void ConvertToIntPtrReturnsStringLengthAsParameter()
+        {
+            uint len;
+            TEXT.ConvertToIntPtr(out len);
+            Assert.AreNotEqual(TEXT.Length, len);
+        }
+
+        [TestMethod]
+        public void ConvertToIntPtrConvertsCorrectString()
+        {
+            uint len;
+            var ptr = TEXT.ConvertToIntPtr(out len);
+            var str = Marshal.PtrToStringAnsi(ptr, (int) len);
+            Assert.AreEqual(TEXT, str);
         }
     }
 }

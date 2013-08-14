@@ -119,6 +119,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VisualStudio2013Package.cs" />
     <Compile Include="CustomTool\ClassNameExtractor.cs" />
     <Compile Include="CustomTool\CodeDomCodeGenerator.cs" />
     <Compile Include="CustomTool\CodeGenerator.cs" />
@@ -140,7 +141,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="VSPackagePackage.cs" />
+    <Compile Include="VisualStudio2012Package.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

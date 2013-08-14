@@ -1,3 +1,4 @@
+using System.CodeDom;
 using System.IO;
 using System.Linq;
 using ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool;
@@ -7,7 +8,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
 {
     [TestClass]
     [DeploymentItem("Resources/Resources.resw")]
-    public class CSharpCodeGeneratorTests
+    public class CSharpCodeGeneratorTestsInternal
     {
         private string reswFileContents;
         private const string FILE_PATH = "Resources.resw";
@@ -19,7 +20,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         {
             reswFileContents = File.ReadAllText(FILE_PATH);
 
-            target = new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", reswFileContents);
+            target = new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", reswFileContents, classAccessibility: MemberAttributes.Assembly);
             actual = target.GenerateCode();
         }
 
