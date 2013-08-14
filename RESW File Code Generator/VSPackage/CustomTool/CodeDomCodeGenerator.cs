@@ -11,14 +11,16 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
     public class CodeDomCodeGenerator : CodeGenerator, IDisposable
     {
         private readonly string className;
+        private readonly MemberAttributes? classAccessibility;
         private readonly CodeNamespace codeNamespace;
         private readonly CodeCompileUnit compileUnit;
         private readonly CodeDomProvider provider;
 
-        public CodeDomCodeGenerator(IResourceParser resourceParser, string className, string defaultNamespace, CodeDomProvider codeDomProvider = null)
+        public CodeDomCodeGenerator(IResourceParser resourceParser, string className, string defaultNamespace, CodeDomProvider codeDomProvider = null, MemberAttributes? classAccessibility = null)
             : base(resourceParser, defaultNamespace)
         {
             this.className = className;
+            this.classAccessibility = classAccessibility;
             compileUnit = new CodeCompileUnit();
             provider = codeDomProvider ?? new CSharpCodeProvider();
             codeNamespace = new CodeNamespace(defaultNamespace);
@@ -45,7 +47,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                   {
                                       IsClass = true,
                                       IsPartial = true,
-                                      Attributes = MemberAttributes.Public | MemberAttributes.Static
+                                      Attributes = (classAccessibility.HasValue ? classAccessibility.Value : MemberAttributes.Public) | MemberAttributes.Static
                                   };
 
             const string resourceLoaderType = "ResourceLoader";

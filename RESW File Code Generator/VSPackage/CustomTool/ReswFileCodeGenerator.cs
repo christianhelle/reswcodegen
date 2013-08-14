@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -11,10 +12,12 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
     public abstract class ReswFileCodeGenerator : IVsSingleFileGenerator
     {
         private readonly CodeDomProvider codeDomProvider;
+        private readonly MemberAttributes? classAccessibility;
 
-        protected ReswFileCodeGenerator(CodeDomProvider codeDomProvider)
+        protected ReswFileCodeGenerator(CodeDomProvider codeDomProvider, MemberAttributes? classAccessibility = null)
         {
             this.codeDomProvider = codeDomProvider;
+            this.classAccessibility = classAccessibility;
         }
 
         #region IVsSingleFileGenerator Members
@@ -32,7 +35,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             {
                 var className = ClassNameExtractor.GetClassName(wszInputFilePath);
                 var factory = new CodeGeneratorFactory();
-                var codeGenerator = factory.Create(className, wszDefaultNamespace, bstrInputFileContents, codeDomProvider);
+                var codeGenerator = factory.Create(className, wszDefaultNamespace, bstrInputFileContents, codeDomProvider, classAccessibility);
                 var code = codeGenerator.GenerateCode();
 
                 rgbOutputFileContents[0] = code.ConvertToIntPtr(out pcbOutput);

@@ -129,7 +129,9 @@
     <Compile Include="CustomTool\ResourceParser.cs" />
     <Compile Include="CustomTool\ReswFileCodeGenerator.cs" />
     <Compile Include="CustomTool\ReswFileCSharpCodeGenerator.cs" />
+    <Compile Include="CustomTool\ReswFileCSharpCodeGeneratorInternal.cs" />
     <Compile Include="CustomTool\ReswFileVisualBasicCodeGenerator.cs" />
+    <Compile Include="CustomTool\ReswFileVisualBasicCodeGeneratorInternal.cs" />
     <Compile Include="CustomTool\StringExtension.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="Resources.Designer.cs">
