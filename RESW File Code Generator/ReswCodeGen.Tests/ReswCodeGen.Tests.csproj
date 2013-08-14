@@ -58,6 +58,7 @@
     <Compile Include="ClassNameExtractorTests.cs" />
     <Compile Include="CodeGeneratorFactoryTests.cs" />
     <Compile Include="CSharpCodeGeneratorTests.cs" />
+    <Compile Include="CSharpCodeGeneratorTestsInternal.cs" />
     <Compile Include="ResourceParserErrorHandlingTests.cs" />
     <Compile Include="ResourceParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
