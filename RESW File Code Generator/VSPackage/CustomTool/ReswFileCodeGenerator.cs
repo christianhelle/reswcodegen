@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
@@ -12,9 +13,9 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
     public abstract class ReswFileCodeGenerator : IVsSingleFileGenerator
     {
         private readonly CodeDomProvider codeDomProvider;
-        private readonly MemberAttributes? classAccessibility;
+        private readonly TypeAttributes? classAccessibility;
 
-        protected ReswFileCodeGenerator(CodeDomProvider codeDomProvider, MemberAttributes? classAccessibility = null)
+        protected ReswFileCodeGenerator(CodeDomProvider codeDomProvider, TypeAttributes? classAccessibility = null)
         {
             this.codeDomProvider = codeDomProvider;
             this.classAccessibility = classAccessibility;

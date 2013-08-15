@@ -1,6 +1,6 @@
-using System.CodeDom;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -20,7 +20,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         {
             reswFileContents = File.ReadAllText(FILE_PATH);
 
-            target = new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", reswFileContents, classAccessibility: MemberAttributes.Assembly);
+            target = new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", reswFileContents, classAccessibility: TypeAttributes.NestedAssembly);
             actual = target.GenerateCode();
         }
 
@@ -28,6 +28,12 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         public void GenerateCodeDoesNotReturnNull()
         {
             Assert.IsNotNull(actual);
+        }
+
+        [TestMethod]
+        public void GeneratedCodeIsAnInternalClass()
+        {
+            Assert.IsTrue(actual.Contains("internal partial class"));
         }
 
         [TestMethod]

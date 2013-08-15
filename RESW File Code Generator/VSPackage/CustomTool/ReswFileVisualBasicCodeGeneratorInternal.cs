@@ -1,4 +1,4 @@
-using System.CodeDom;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using Microsoft.VisualBasic;
 
@@ -9,7 +9,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
     public class ReswFileVisualBasicCodeGeneratorInternal : ReswFileCodeGenerator
     {
         public ReswFileVisualBasicCodeGeneratorInternal()
-            : base(new VBCodeProvider(), MemberAttributes.Assembly)
+            : base(new VBCodeProvider(), TypeAttributes.NestedAssembly)
         {
         }
 
