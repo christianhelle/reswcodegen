@@ -1,17 +1,19 @@
-using System.IO;
+﻿using System.IO;
 using System.Linq;
+using System.Reflection;
 using ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool;
+using Microsoft.VisualBasic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
 {
     [TestClass]
     [DeploymentItem("Resources/Resources.resw")]
-    public class CSharpCodeGeneratorTests
+    public class VisualBasicCodeGeneratorInternalTests
     {
-        private string reswFileContents;
         private const string FILE_PATH = "Resources.resw";
         private string actual;
+        private string reswFileContents;
         private ICodeGenerator target;
 
         [TestInitialize]
@@ -19,7 +21,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         {
             reswFileContents = File.ReadAllText(FILE_PATH);
 
-            target = new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", reswFileContents);
+            target = new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", reswFileContents, new VBCodeProvider(), TypeAttributes.NestedAssembly);
             actual = target.GenerateCode();
         }
 
@@ -30,9 +32,9 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         }
 
         [TestMethod]
-        public void GeneratedCodeIsAPublicClass()
+        public void GeneratedCodeIsFriendClass()
         {
-            Assert.IsTrue(actual.Contains("public partial class"));
+            Assert.IsTrue(actual.Contains("Partial Friend Class"));
         }
 
         [TestMethod]
@@ -41,7 +43,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
             var resourceItems = target.ResourceParser.Parse();
 
             foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
-                Assert.IsTrue(actual.Contains("public static string " + item.Name));
+                Assert.IsTrue(actual.Contains("Public Shared ReadOnly Property " + item.Name + "() As String"));
         }
 
         [TestMethod]
@@ -56,13 +58,13 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         [TestMethod]
         public void ClassNameEqualsFileNameWithoutExtension()
         {
-            Assert.IsTrue(actual.Contains("class Resources"));
+            Assert.IsTrue(actual.Contains("Class Resources"));
         }
 
         [TestMethod]
         public void ResourceLoaderInitializedWithClassName()
         {
-            Assert.IsTrue(actual.Contains("new ResourceLoader(currentAssemblyName + \"/Resources\");"));
+            Assert.IsTrue(actual.Contains("New ResourceLoader(currentAssemblyName + \"/Resources\")"));
         }
     }
 }

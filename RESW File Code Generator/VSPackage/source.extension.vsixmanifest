@@ -8,7 +8,7 @@
               Language="en-US"
               Publisher="Christian Resma Helle" />
     <DisplayName>ResW File Code Generator</DisplayName>
-    <Description>Information about my packageA Visual Studio 2012 Custom Tool for generating a strongly typed helper class for accessing localized resources from a .ResW file.</Description>
+    <Description xml:space="preserve">A Visual Studio Custom Tool for generating a strongly typed helper class for accessing localized resources from a .ResW file.</Description>
     <MoreInfo>http://visualstudiogallery.msdn.microsoft.com/3ab88efd-1afb-4ff5-9faf-8825a282596a</MoreInfo>
     <License>License.txt</License>
   </Metadata>

@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using Microsoft.CSharp;
 
@@ -11,12 +12,12 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
     public class CodeDomCodeGenerator : CodeGenerator, IDisposable
     {
         private readonly string className;
-        private readonly MemberAttributes? classAccessibility;
+        private readonly TypeAttributes? classAccessibility;
         private readonly CodeNamespace codeNamespace;
         private readonly CodeCompileUnit compileUnit;
         private readonly CodeDomProvider provider;
 
-        public CodeDomCodeGenerator(IResourceParser resourceParser, string className, string defaultNamespace, CodeDomProvider codeDomProvider = null, MemberAttributes? classAccessibility = null)
+        public CodeDomCodeGenerator(IResourceParser resourceParser, string className, string defaultNamespace, CodeDomProvider codeDomProvider = null, TypeAttributes? classAccessibility = null)
             : base(resourceParser, defaultNamespace)
         {
             this.className = className;
@@ -47,7 +48,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                   {
                                       IsClass = true,
                                       IsPartial = true,
-                                      Attributes = (classAccessibility.HasValue ? classAccessibility.Value : MemberAttributes.Public) | MemberAttributes.Static
+                                      TypeAttributes = classAccessibility.HasValue ? classAccessibility.Value : TypeAttributes.Public
                                   };
 
             const string resourceLoaderType = "ResourceLoader";
@@ -159,7 +160,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
         }
 
         #region IDisposable
-        
+
         private bool disposed;
 
         ~CodeDomCodeGenerator()
@@ -180,7 +181,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 
             if (dispose)
                 provider.Dispose();
-        }         
+        }
 
         #endregion
     }

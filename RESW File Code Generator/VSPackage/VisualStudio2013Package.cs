@@ -27,12 +27,14 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage
     [DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\12.0")]
     [ProvideObject(typeof(ReswFileCSharpCodeGenerator))]
     [ProvideObject(typeof(ReswFileVisualBasicCodeGenerator))]
+    [ProvideObject(typeof(ReswFileCSharpCodeGeneratorInternal))]
+    [ProvideObject(typeof(ReswFileVisualBasicCodeGeneratorInternal))]
     [ProvideGeneratorAttribute(typeof(ReswFileCSharpCodeGenerator), "ReswFileCodeGenerator", "ResW File Code Generator for C#", "{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}", true)] // csharp
     [ProvideGeneratorAttribute(typeof(ReswFileVisualBasicCodeGenerator), "ReswFileCodeGenerator", "ResW File Code Generator for VB", "{164B10B9-B200-11D0-8C61-00A0C91E29D5}", true)] // visual basic
     [ProvideGeneratorAttribute(typeof(ReswFileCSharpCodeGenerator), "PublicReswFileCodeGenerator", "ResW File Code Generator for C#", "{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}", true)] // csharp
     [ProvideGeneratorAttribute(typeof(ReswFileVisualBasicCodeGenerator), "PublicReswFileCodeGenerator", "ResW File Code Generator for VB", "{164B10B9-B200-11D0-8C61-00A0C91E29D5}", true)] // visual basic
-    [ProvideGeneratorAttribute(typeof(ReswFileCSharpCodeGeneratorInternal), "InternalReswFileCodeGenerator", "ResW File Code Generator for C#", "{151F74CA-404D-4188-B994-D7683C32ACF4}", true)] // csharp
-    [ProvideGeneratorAttribute(typeof(ReswFileVisualBasicCodeGeneratorInternal), "InternalReswFileCodeGenerator", "ResW File Code Generator for VB", "{6C6AC14F-9B11-47C1-BC90-DFBFB89B1CB8}", true)] // visual basic
+    [ProvideGeneratorAttribute(typeof(ReswFileCSharpCodeGeneratorInternal), "InternalReswFileCodeGenerator", "ResW File Code Generator for C#", "{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}", true)] // csharp
+    [ProvideGeneratorAttribute(typeof(ReswFileVisualBasicCodeGeneratorInternal), "InternalReswFileCodeGenerator", "ResW File Code Generator for VB", "{164B10B9-B200-11D0-8C61-00A0C91E29D5}", true)] // visual basic
     public sealed class VisualStudio2013Package : Package
     {
         /// <summary>

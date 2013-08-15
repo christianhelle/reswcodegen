@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="ClassNameExtractorTests.cs" />
     <Compile Include="CodeGeneratorFactoryTests.cs" />
+    <Compile Include="VisualBasicCodeGeneratorInternalTests.cs" />
     <Compile Include="CSharpCodeGeneratorTests.cs" />
     <Compile Include="CSharpCodeGeneratorTestsInternal.cs" />
     <Compile Include="ResourceParserErrorHandlingTests.cs" />

@@ -1,4 +1,5 @@
 using System.CodeDom;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using Microsoft.CSharp;
 
@@ -9,7 +10,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
     public class ReswFileCSharpCodeGeneratorInternal : ReswFileCodeGenerator
     {
         public ReswFileCSharpCodeGeneratorInternal()
-            : base(new CSharpCodeProvider(), MemberAttributes.Assembly)
+            : base(new CSharpCodeProvider(), TypeAttributes.NestedAssembly)
         {
         }
 
