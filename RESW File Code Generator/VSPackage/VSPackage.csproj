@@ -119,6 +119,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomTool\VisualStudioVersion.cs" />
     <Compile Include="VisualStudio2013Package.cs" />
     <Compile Include="CustomTool\ClassNameExtractor.cs" />
     <Compile Include="CustomTool\CodeDomCodeGenerator.cs" />
