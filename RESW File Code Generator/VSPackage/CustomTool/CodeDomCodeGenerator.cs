@@ -84,21 +84,31 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 new CodeVariableReferenceExpression("currentAssemblyName"),
                 new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("currentAssemblySplit"), new CodePrimitiveExpression(1)));
 
+            // TODO: Call GetForCurrentView() instead of the constructor method because the constructor will be depracted after future versions of Windows 8.1
+
             var createResourceLoader = new CodeConditionStatement(
                 new CodeSnippetExpression("executingAssemblyName.Equals(currentAssemblyName)"),
                 new CodeStatement[] // true
                     {
                         new CodeAssignStatement(
                             new CodeFieldReferenceExpression(null, "resourceLoader"),
-                            new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
+                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"), "GetForCurrentView",
                                                            new CodeSnippetExpression("\"" + className + "\"")))
+                        //new CodeAssignStatement(
+                        //    new CodeFieldReferenceExpression(null, "resourceLoader"),
+                        //    new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
+                        //                                   new CodeSnippetExpression("\"" + className + "\"")))
                     },
                 new CodeStatement[] // false
                     {
                         new CodeAssignStatement(
                             new CodeFieldReferenceExpression(null, "resourceLoader"),
-                            new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
+                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"), "GetForCurrentView",
                                                            new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
+                        //new CodeAssignStatement(
+                        //    new CodeFieldReferenceExpression(null, "resourceLoader"),
+                        //    new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
+                        //                                   new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
                     });
 
             constructor.Statements.Add(executingAssemblyVar);
