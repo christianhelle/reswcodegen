@@ -66,6 +66,7 @@
     <Compile Include="SignOff-Tests\CSharpProjectTests.cs" />
     <Compile Include="SignOff-Tests\SolutionTests.cs" />
     <Compile Include="SignOff-Tests\VBProjectTests.cs" />
+    <Compile Include="VisualStudioVersionHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
