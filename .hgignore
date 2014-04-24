@@ -6,3 +6,4 @@ syntax: glob
 *.user
 *ReSharper*
 */Setup/Setup/*
+UpgradeLog.htm
