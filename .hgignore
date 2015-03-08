@@ -7,3 +7,4 @@ syntax: glob
 *ReSharper*
 */Setup/Setup/*
 UpgradeLog.htm
+RESW File Code Generator/Backup/
