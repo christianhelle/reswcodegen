@@ -24,7 +24,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage
     // in the Help/About dialog of Visual Studio.
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [Guid(GuidList.guidVSPackagePkgString)]
-    [DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\13.0")]
+    [DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\14.0")]
     [ProvideObject(typeof(ReswFileCSharpCodeGenerator))]
     [ProvideObject(typeof(ReswFileVisualBasicCodeGenerator))]
     [ProvideObject(typeof(ReswFileCSharpCodeGeneratorInternal))]
