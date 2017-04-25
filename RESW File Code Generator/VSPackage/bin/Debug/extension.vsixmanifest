@@ -1,0 +1,22 @@
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
+  <Metadata>
+    <Identity Id="6a4c1726-440f-4b2d-a2e5-711277da6099" Version="1.4" Language="en-US" Publisher="Christian Resma Helle" />
+    <DisplayName>ResW File Code Generator</DisplayName>
+    <Description xml:space="preserve">A Visual Studio Custom Tool for generating a strongly typed helper class for accessing localized resources from a .ResW file.</Description>
+    <MoreInfo>http://visualstudiogallery.msdn.microsoft.com/3ab88efd-1afb-4ff5-9faf-8825a282596a</MoreInfo>
+    <License>License.txt</License>
+  </Metadata>
+  <Installation InstalledByMsi="false">
+    <InstallationTarget Version="[11.0,15.0]" Id="Microsoft.VisualStudio.IntegratedShell" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" Version="4.5" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.11.0" DisplayName="Visual Studio MPF 11.0" Version="11.0" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" Path="ReswCodeGen.VSPackage.pkgdef" />
+  </Assets>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.Net.Component.4.6.TargetingPack" Version="[15.0.26208.0,16.0)" DisplayName=".NET Framework 4.6 targeting pack" />
+  </Prerequisites>
+</PackageManifest>
