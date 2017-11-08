@@ -43,7 +43,7 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
     }
 
 
-** VB Usage**
+**VB Usage**
 
     Dim test1, test2, test3
 
