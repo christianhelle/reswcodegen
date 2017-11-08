@@ -10,7 +10,7 @@ using Microsoft.CSharp;
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 {
     public class CodeDomCodeGenerator : CodeGenerator, IDisposable
-    {  
+    {
         private readonly TypeAttributes? classAccessibility;
         private readonly VisualStudioVersion visualStudioVersion;
         private readonly string className;
@@ -68,11 +68,12 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             targetClass.Members.Add(resourceLoaderField);
 
             var constructor = new CodeTypeConstructor();
+            var trycatch = new CodeTryCatchFinallyStatement();
 
-            var executingAssemblyVar = new CodeVariableDeclarationStatement(typeof (string), "executingAssemblyName");
+            var executingAssemblyVar = new CodeVariableDeclarationStatement(typeof(string), "executingAssemblyName");
             var executingAssemblyInit = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblyName"),
                                                                 new CodeSnippetExpression("Windows.UI.Xaml.Application.Current.GetType().AssemblyQualifiedName"));
-            var executingAssemblySplit = new CodeVariableDeclarationStatement(typeof (string[]), "executingAssemblySplit");
+            var executingAssemblySplit = new CodeVariableDeclarationStatement(typeof(string[]), "executingAssemblySplit");
             var executingAssemblyInit2 = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblySplit"),
                                                                  new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("executingAssemblyName"),
                                                                                                 "Split",
@@ -81,10 +82,10 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                                  new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("executingAssemblySplit"),
                                                                                                 new CodePrimitiveExpression(1)));
 
-            var currentAssemblyVar = new CodeVariableDeclarationStatement(typeof (string), "currentAssemblyName");
+            var currentAssemblyVar = new CodeVariableDeclarationStatement(typeof(string), "currentAssemblyName");
             var currentAssemblyInit = new CodeAssignStatement(new CodeVariableReferenceExpression("currentAssemblyName"),
                                                               new CodePropertyReferenceExpression(new CodeTypeOfExpression(className), "AssemblyQualifiedName"));
-            var currentAssemblySplit = new CodeVariableDeclarationStatement(typeof (string[]), "currentAssemblySplit");
+            var currentAssemblySplit = new CodeVariableDeclarationStatement(typeof(string[]), "currentAssemblySplit");
             var currentAssemblyInit2 = new CodeAssignStatement(new CodeVariableReferenceExpression("currentAssemblySplit"),
                                                                new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("currentAssemblyName"),
                                                                                               "Split",
@@ -118,17 +119,28 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                                                  new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
                 });
 
-            constructor.Statements.Add(executingAssemblyVar);
-            constructor.Statements.Add(executingAssemblyInit);
-            constructor.Statements.Add(executingAssemblySplit);
-            constructor.Statements.Add(executingAssemblyInit2);
-            constructor.Statements.Add(executingAssemblyInit3);
-            constructor.Statements.Add(currentAssemblyVar);
-            constructor.Statements.Add(currentAssemblyInit);
-            constructor.Statements.Add(currentAssemblySplit);
-            constructor.Statements.Add(currentAssemblyInit2);
-            constructor.Statements.Add(currentAssemblyInit3);
-            constructor.Statements.Add(createResourceLoader);
+            trycatch.TryStatements.Add(executingAssemblyVar);
+            trycatch.TryStatements.Add(executingAssemblyInit);
+            trycatch.TryStatements.Add(executingAssemblySplit);
+            trycatch.TryStatements.Add(executingAssemblyInit2);
+            trycatch.TryStatements.Add(executingAssemblyInit3);
+            trycatch.TryStatements.Add(currentAssemblyVar);
+            trycatch.TryStatements.Add(currentAssemblyInit);
+            trycatch.TryStatements.Add(currentAssemblySplit);
+            trycatch.TryStatements.Add(currentAssemblyInit2);
+            trycatch.TryStatements.Add(currentAssemblyInit3);
+            trycatch.TryStatements.Add(createResourceLoader);
+
+            var cat = new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
+                                                  new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
+                                                                                 "GetForViewIndependentUse",
+                                                                                 new CodeSnippetExpression("typeof(" + className + ").AssemblyQualifiedName.Split(',')[1].Trim() + \"/" + className + "\"")));
+
+            var catClause = new CodeCatchClause();
+            catClause.Statements.Add(cat);
+            trycatch.CatchClauses.Add(catClause);
+
+            constructor.Statements.Add(trycatch);
 
             targetClass.Members.Add(constructor);
 
@@ -143,7 +155,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                     Name = item.Name.Trim(),
                     Attributes = MemberAttributes.Public | MemberAttributes.Static,
                     HasGet = true,
-                    Type = new CodeTypeReference(typeof (string))
+                    Type = new CodeTypeReference(typeof(string))
                 };
 
                 property.Comments.Add(new CodeCommentStatement("<summary>", true));
@@ -167,7 +179,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 
         private string GenerateCodeFromCompileUnit()
         {
-            var options = new CodeGeneratorOptions {BracingStyle = "C"};
+            var options = new CodeGeneratorOptions { BracingStyle = "C" };
 
             var code = new StringBuilder();
 
