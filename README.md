@@ -15,13 +15,15 @@
 - C#
 - Visual Basic
 
-**Visual Studio Custom Tool (C#)**
+**Screenshots**
+
+Visual Studio Custom Tool (C#)
 ![](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=527605)
 
-**Visual Studio Custom Tool (VB)**
+Visual Studio Custom Tool (VB)
 ![](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=528704)
 
-**Resource File Contents**
+Resource File Contents
 ![](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=527606)
 
 
