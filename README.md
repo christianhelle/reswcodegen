@@ -1,3 +1,6 @@
+# ResW File Code Generator
+A Visual Studio Custom Tool for generating a strongly typed helper class for accessing localized resources from a .ResW file.
+
 **Features**
 
 - Define custom namespace for the generated file
@@ -17,14 +20,14 @@
 
 **Screenshots**
 
-Visual Studio Custom Tool (C#)
-![](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=527605)
+![alt text](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=527605)
+- Visual Studio Custom Tool (C#)
 
-Visual Studio Custom Tool (VB)
-![](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=528704)
+![alt text](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=528704)
+- Visual Studio Custom Tool (VB)
 
-Resource File Contents
-![](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=527606)
+![alt text](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=527606)
+- Resource File Contents
 
 
 
