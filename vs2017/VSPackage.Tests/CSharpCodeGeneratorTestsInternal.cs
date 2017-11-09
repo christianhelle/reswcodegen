@@ -33,7 +33,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         [TestMethod]
         public void GeneratedCodeIsAnInternalClass()
         {
-            Assert.IsTrue(actual.Contains("internal partial class"));
+            Assert.IsTrue(actual.Contains("internal sealed partial class"));
         }
 
         [TestMethod]

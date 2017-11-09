@@ -34,7 +34,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         [TestMethod]
         public void GeneratedCodeIsFriendClass()
         {
-            Assert.IsTrue(actual.Contains("Partial Friend Class"));
+            Assert.IsTrue(actual.Contains("Partial Friend NotInheritable Class"));
         }
 
         [TestMethod]

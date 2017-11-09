@@ -32,7 +32,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         [TestMethod]
         public void GeneratedCodeIsAPublicClass()
         {
-            Assert.IsTrue(actual.Contains("public partial class"));
+            Assert.IsTrue(actual.Contains("public sealed partial class"));
         }
 
         [TestMethod]

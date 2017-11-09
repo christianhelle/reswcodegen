@@ -56,8 +56,9 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             var targetClass = new CodeTypeDeclaration(className)
             {
                 IsClass = true,
-                IsPartial = true,
-                TypeAttributes = classAccessibility.HasValue ? classAccessibility.Value : TypeAttributes.Public
+                IsPartial = true, 
+                TypeAttributes = TypeAttributes.Sealed | (classAccessibility ?? TypeAttributes.Public),
+                Attributes = MemberAttributes.Public | MemberAttributes.Static | MemberAttributes.Final
             };
 
             const string resourceLoaderType = "ResourceLoader";
