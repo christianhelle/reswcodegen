@@ -64,5 +64,11 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         {
             Assert.IsTrue(actual.Contains("new ResourceLoader(currentAssemblyName + \"/Resources\");"));
         }
+
+        [TestMethod]
+        public void ContainsProjectUrl()
+        {
+            Assert.IsTrue(actual.Contains("http://bit.ly/reswcodegen"));
+        }
     }
 }
