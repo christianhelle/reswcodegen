@@ -6,7 +6,7 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
 - Define custom namespace for the generated file
 - Auto-updating of generated code file when changes are made to the .ResW Resource file
 - XML documentation style comments like "Localized resource similar to '[the value]'"
-
+- Supports Visual Studio 2015 and 2017
 
 **Custom Tools**
 
