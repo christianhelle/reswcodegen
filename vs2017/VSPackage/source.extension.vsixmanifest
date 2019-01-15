@@ -4,17 +4,17 @@
                  xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
         <Identity Id="6a4c1726-440f-4b2d-a2e5-711277da6099"
-                  Version="1.5"
+                  Version="1.5.1"
                   Language="en-US"
                   Publisher="Christian Resma Helle" />
         <DisplayName>ResW File Code Generator</DisplayName>
         <Description xml:space="preserve">A Visual Studio Custom Tool for generating a strongly typed helper class for accessing localized resources from a .ResW file.</Description>
-        <MoreInfo>http://visualstudiogallery.msdn.microsoft.com/3ab88efd-1afb-4ff5-9faf-8825a282596a</MoreInfo>
+        <MoreInfo>https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator</MoreInfo>
         <License>License.txt</License>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.IntegratedShell"
-                            Version="[14.0,16.0)" />
+                            Version="[14.0,17.0)" />
     </Installation>
     <Dependencies>
         <Dependency Id="Microsoft.Framework.NDP"
@@ -34,7 +34,7 @@
     </Assets>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor"
-                      Version="[14.0,16.0)"
+                      Version="[14.0,17.0)"
                       DisplayName="Visual Studio core editor" />
     </Prerequisites>
 </PackageManifest>
