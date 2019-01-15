@@ -14,7 +14,7 @@
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.IntegratedShell"
-                            Version="[14.0,16.0)" />
+                            Version="[14.0,17.0)" />
     </Installation>
     <Dependencies>
         <Dependency Id="Microsoft.Framework.NDP"
@@ -34,7 +34,7 @@
     </Assets>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor"
-                      Version="[14.0,16.0)"
+                      Version="[14.0,17.0)"
                       DisplayName="Visual Studio core editor" />
     </Prerequisites>
 </PackageManifest>
