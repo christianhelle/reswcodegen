@@ -9,7 +9,7 @@
                   Publisher="Christian Resma Helle" />
         <DisplayName>ResW File Code Generator</DisplayName>
         <Description xml:space="preserve">A Visual Studio Custom Tool for generating a strongly typed helper class for accessing localized resources from a .ResW file.</Description>
-        <MoreInfo>http://visualstudiogallery.msdn.microsoft.com/3ab88efd-1afb-4ff5-9faf-8825a282596a</MoreInfo>
+        <MoreInfo>https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator</MoreInfo>
         <License>License.txt</License>
     </Metadata>
     <Installation>
