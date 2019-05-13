@@ -18,18 +18,6 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
 - C#
 - Visual Basic
 
-**Screenshots**
-
-![alt text](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=527605)
-- Visual Studio Custom Tool (C#)
-
-![alt text](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=528704)
-- Visual Studio Custom Tool (VB)
-
-![alt text](http://www.codeplex.com/Download?ProjectName=reswcodegen&DownloadId=527606)
-- Resource File Contents
-
-
 
 **C# Usage**
 
