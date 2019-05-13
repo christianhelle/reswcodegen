@@ -20,6 +20,12 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
 - C#
 - Visual Basic
 
+**Screenshots**
+
+![ReswFileCodeGenerator Custom Tool](https://github.com/christianhelle/reswcodegen/raw/master/images/reswfilecodegenerator-customtool.png)
+
+![InternalReswFileCodeGenerator Custom Tool](https://github.com/christianhelle/reswcodegen/raw/master/images/internalreswfilecodegenerator-customtool.png)
+
 
 **Example C# Usage**
 
