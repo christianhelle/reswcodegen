@@ -62,13 +62,44 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             };
 
             const string resourceLoaderType = "ResourceLoader";
-            var resourceLoaderField = new CodeMemberField(resourceLoaderType, "resourceLoader")
+            const string resourceLoaderFieldName = "resourceLoader";
+            var resourceLoaderField = new CodeMemberField(resourceLoaderType, resourceLoaderFieldName)
             {
                 Attributes = MemberAttributes.Private | MemberAttributes.Static | MemberAttributes.Final
             };
             targetClass.Members.Add(resourceLoaderField);
 
-            var constructor = new CodeTypeConstructor();
+            var resourceLoaderProperty = new CodeMemberProperty
+            {
+                Name = resourceLoaderType,
+                Attributes = MemberAttributes.Public | MemberAttributes.Static,
+                HasGet = true,
+                Type = new CodeTypeReference(resourceLoaderType)
+            };
+
+            resourceLoaderProperty.Comments.Add(new CodeCommentStatement("<summary>", true));
+            resourceLoaderProperty.Comments.Add(new CodeCommentStatement("Get or set ResourceLoader implementation", true));
+            resourceLoaderProperty.Comments.Add(new CodeCommentStatement("</summary>", true));
+            resourceLoaderProperty.GetStatements.Add(
+                new CodeConditionStatement(
+                    new CodeBinaryOperatorExpression(
+                        new CodeVariableReferenceExpression(resourceLoaderFieldName),
+                        CodeBinaryOperatorType.ValueEquality,
+                        new CodePrimitiveExpression(null)),
+                    new CodeExpressionStatement(
+                        new CodeMethodInvokeExpression(new CodeMethodReferenceExpression(new CodeTypeReferenceExpression(className), "Initialize")))));
+            resourceLoaderProperty.GetStatements.Add(new CodeMethodReturnStatement(new CodeFieldReferenceExpression(null, "resourceLoader")));
+            resourceLoaderProperty.SetStatements.Add(
+                new CodeAssignStatement(
+                    new CodeVariableReferenceExpression(resourceLoaderFieldName), 
+                    new CodePropertySetValueReferenceExpression()));
+            targetClass.Members.Add(resourceLoaderProperty);
+
+            var initializeResourceLoader = new CodeMemberMethod
+            {
+                Name = "Initialize",
+                Attributes = MemberAttributes.Public | MemberAttributes.Static
+            };
 
             var executingAssemblyVar = new CodeVariableDeclarationStatement(typeof (string), "executingAssemblyName");
             var executingAssemblyInit = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblyName"),
@@ -119,19 +150,18 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                                                  new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
                 });
 
-            constructor.Statements.Add(executingAssemblyVar);
-            constructor.Statements.Add(executingAssemblyInit);
-            constructor.Statements.Add(executingAssemblySplit);
-            constructor.Statements.Add(executingAssemblyInit2);
-            constructor.Statements.Add(executingAssemblyInit3);
-            constructor.Statements.Add(currentAssemblyVar);
-            constructor.Statements.Add(currentAssemblyInit);
-            constructor.Statements.Add(currentAssemblySplit);
-            constructor.Statements.Add(currentAssemblyInit2);
-            constructor.Statements.Add(currentAssemblyInit3);
-            constructor.Statements.Add(createResourceLoader);
-
-            targetClass.Members.Add(constructor);
+            initializeResourceLoader.Statements.Add(executingAssemblyVar);
+            initializeResourceLoader.Statements.Add(executingAssemblyInit);
+            initializeResourceLoader.Statements.Add(executingAssemblySplit);
+            initializeResourceLoader.Statements.Add(executingAssemblyInit2);
+            initializeResourceLoader.Statements.Add(executingAssemblyInit3);
+            initializeResourceLoader.Statements.Add(currentAssemblyVar);
+            initializeResourceLoader.Statements.Add(currentAssemblyInit);
+            initializeResourceLoader.Statements.Add(currentAssemblySplit);
+            initializeResourceLoader.Statements.Add(currentAssemblyInit2);
+            initializeResourceLoader.Statements.Add(currentAssemblyInit3);
+            initializeResourceLoader.Statements.Add(createResourceLoader);
+            targetClass.Members.Add(initializeResourceLoader);
 
             var resources = ResourceParser.Parse();
             foreach (var item in resources)
@@ -153,7 +183,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 property.GetStatements.Add(
                     new CodeMethodReturnStatement(
                         new CodeMethodInvokeExpression(
-                            new CodeFieldReferenceExpression(null, "resourceLoader"),
+                            new CodeFieldReferenceExpression(null, resourceLoaderType),
                             "GetString",
                             new CodePrimitiveExpression(item.Name))));
 
