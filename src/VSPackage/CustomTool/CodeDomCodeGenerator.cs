@@ -71,7 +71,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 
             var resourceLoaderProperty = new CodeMemberProperty
             {
-                Name = resourceLoaderType,
+                Name = "Resource",
                 Attributes = MemberAttributes.Public | MemberAttributes.Static,
                 HasGet = true,
                 Type = new CodeTypeReference(resourceLoaderType)
@@ -84,7 +84,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 new CodeConditionStatement(
                     new CodeBinaryOperatorExpression(
                         new CodeVariableReferenceExpression(resourceLoaderFieldName),
-                        CodeBinaryOperatorType.ValueEquality,
+                        CodeBinaryOperatorType.IdentityEquality,
                         new CodePrimitiveExpression(null)),
                     new CodeExpressionStatement(
                         new CodeMethodInvokeExpression(new CodeMethodReferenceExpression(new CodeTypeReferenceExpression(className), "Initialize")))));
@@ -134,7 +134,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                   new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
                                                                                  "GetForCurrentView",
                                                                                  new CodeSnippetExpression("\"" + className + "\"")))
-                        : new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
+                        : new CodeAssignStatement(new CodeFieldReferenceExpression(null, resourceLoaderFieldName),
                                                   new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
                                                                                  new CodeSnippetExpression("\"" + className + "\"")))
                 },
@@ -145,7 +145,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                   new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
                                                                                  "GetForCurrentView",
                                                                                  new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
-                        : new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
+                        : new CodeAssignStatement(new CodeFieldReferenceExpression(null, resourceLoaderFieldName),
                                                   new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
                                                                                  new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
                 });
@@ -183,7 +183,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 property.GetStatements.Add(
                     new CodeMethodReturnStatement(
                         new CodeMethodInvokeExpression(
-                            new CodeFieldReferenceExpression(null, resourceLoaderType),
+                            new CodeFieldReferenceExpression(null, "Resource"),
                             "GetString",
                             new CodePrimitiveExpression(item.Name))));
 
