@@ -9,6 +9,7 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
 - Auto-updating of generated code file when changes are made to the .ResW Resource file
 - XML documentation style comments like "Localized resource similar to '[the value]'"
 - Supports Visual Studio 2015, 2017, and 2019
+- Supports dotted keys - Replaces **.** with **_** (e.g. `Something.Awesome` = `Something_Awesome`)
 
 **Custom Tools**
 
@@ -36,6 +37,7 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
         test1 = App1.LocalizedResources.Resources.Test1;
         test2 = App1.LocalizedResources.Resources.Test2;
         test3 = App1.LocalizedResources.Resources.Test3;
+        test4 = App1.LocalizedResources.Resources.Test_With_Dotted_Keys;
     }
 
 
@@ -47,6 +49,7 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
         test1 = AppVb.LocalizedStrings.Resources.Test1
         test2 = AppVb.LocalizedStrings.Resources.Test2
         test3 = AppVb.LocalizedStrings.Resources.Test3
+        test4 = AppVb.LocalizedStrings.Resources.Test_With_Dotted_Keys;
     End Sub
 
 
@@ -133,6 +136,17 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
                 get
                 {
                     return Resource.GetString("Test3");
+                }
+            }
+        
+            /// <summary>
+            /// Localized resource similar to "test"
+            /// </summary>
+            public static string Test_With_Dotted_Keys
+            {
+                get
+                {
+                    return Resource.GetString("Test/With/Dotted/Keys");
                 }
             }
         
@@ -235,6 +249,15 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
         Public Shared ReadOnly Property Test3() As String
             Get
                 Return Resource.GetString("Test3")
+            End Get
+        End Property
+    
+        '''<summary>
+        '''Localized resource similar to "test"
+        '''</summary>
+        Public Shared ReadOnly Property Test_With_Dotted_Keys() As String
+            Get
+                Return Resource.GetString("Test/With/Dotted/Keys")
             End Get
         End Property
     
