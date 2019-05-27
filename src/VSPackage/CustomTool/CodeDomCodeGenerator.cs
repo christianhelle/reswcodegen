@@ -166,12 +166,12 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             var resources = ResourceParser.Parse();
             foreach (var item in resources)
             {
-                if (string.IsNullOrEmpty(item.Name) || item.Name.Contains("."))
+                if (string.IsNullOrEmpty(item.Name))
                     continue;
 
                 var property = new CodeMemberProperty
                 {
-                    Name = item.Name.Trim(),
+                    Name = item.Name.Replace(".", "_").Trim(),
                     Attributes = MemberAttributes.Public | MemberAttributes.Static,
                     HasGet = true,
                     Type = new CodeTypeReference(typeof (string))
@@ -185,7 +185,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                         new CodeMethodInvokeExpression(
                             new CodeFieldReferenceExpression(null, "Resource"),
                             "GetString",
-                            new CodePrimitiveExpression(item.Name))));
+                            new CodePrimitiveExpression(item.Name.Replace(".","/")))));
 
                 targetClass.Members.Add(property);
             }

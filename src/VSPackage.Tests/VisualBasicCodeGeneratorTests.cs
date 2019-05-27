@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Linq;
 using ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool;
 using Microsoft.VisualBasic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -35,8 +34,23 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         {
             var resourceItems = target.ResourceParser.Parse();
 
-            foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
-                Assert.IsTrue(actual.Contains("Public Shared ReadOnly Property " + item.Name + "() As String"));
+            foreach (var item in resourceItems)
+            {
+                var value = $"Public Shared ReadOnly Property {item.Name.Replace(".", "_")}() As String";
+                Assert.IsTrue(actual.Contains(value));
+            }
+        }
+
+        [TestMethod]
+        public void GeneratedCodeReplacesDottedKeysWithForwardSlash()
+        {
+            var resourceItems = target.ResourceParser.Parse();
+
+            foreach (var item in resourceItems)
+            {
+                var value = $"GetString(\"{item.Name.Replace(".", "/")}\")";
+                Assert.IsTrue(actual.Contains(value));
+            }
         }
 
         [TestMethod]
@@ -44,7 +58,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         {
             var resourceItems = target.ResourceParser.Parse();
 
-            foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
+            foreach (var item in resourceItems)
                 Assert.IsTrue(actual.Contains("Localized resource similar to \"" + item.Value + "\""));
         }
 

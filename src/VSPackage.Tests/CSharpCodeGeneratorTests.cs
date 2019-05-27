@@ -40,8 +40,23 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         {
             var resourceItems = target.ResourceParser.Parse();
 
-            foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
-                Assert.IsTrue(actual.Contains("public static string " + item.Name));
+            foreach (var item in resourceItems)
+            {
+                var value = $"public static string {item.Name.Replace(".", "_")}";
+                Assert.IsTrue(actual.Contains(value));
+            }
+        }
+
+        [TestMethod]
+        public void GeneratedCodeReplacesDottedKeysWithForwardSlash()
+        {
+            var resourceItems = target.ResourceParser.Parse();
+
+            foreach (var item in resourceItems)
+            {
+                var value = $"GetString(\"{item.Name.Replace(".", "/")}\")";
+                Assert.IsTrue(actual.Contains(value));
+            }
         }
 
         [TestMethod]
@@ -49,7 +64,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         {
             var resourceItems = target.ResourceParser.Parse();
 
-            foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
+            foreach (var item in resourceItems)
                 Assert.IsTrue(actual.Contains("Localized resource similar to \"" + item.Value + "\""));
         }
 
