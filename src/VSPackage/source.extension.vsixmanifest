@@ -14,7 +14,7 @@
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" 
-                            Version="[15.0, 17.0)" />
+                            Version="[14.0, 17.0)" />
     </Installation>
     <Dependencies>
         <Dependency Id="Microsoft.Framework.NDP"
