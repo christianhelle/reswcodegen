@@ -4,7 +4,7 @@
                  xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
         <Identity Id="6a4c1726-440f-4b2d-a2e5-711277da6099"
-                  Version="1.5.1"
+                  Version="1.5.2"
                   Language="en-US"
                   Publisher="Christian Resma Helle" />
         <DisplayName>ResW File Code Generator</DisplayName>
@@ -14,7 +14,7 @@
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" 
-                            Version="[15.0, 17.0)" />
+                            Version="[14.0, 17.0)" />
     </Installation>
     <Dependencies>
         <Dependency Id="Microsoft.Framework.NDP"
