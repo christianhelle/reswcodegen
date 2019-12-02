@@ -1,4 +1,7 @@
 [![Build Status](https://christianhelle.visualstudio.com/ResW%20File%20Code%20Generator/_apis/build/status/CI%20Build?branchName=master)](https://christianhelle.visualstudio.com/ResW%20File%20Code%20Generator/_build/latest?definitionId=11&branchName=master)
+[![Version](https://vsmarketplacebadge.apphb.com/version/ChristianResmaHelle.ResWFileCodeGenerator.svg)](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator) 
+[![Installs](https://vsmarketplacebadge.apphb.com/downloads-short/ChristianResmaHelle.ResWFileCodeGenerator.svg)](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator) 
+[![Rating](https://vsmarketplacebadge.apphb.com/rating-star/ChristianResmaHelle.ResWFileCodeGenerator.svg)](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator)
 
 # ResW File Code Generator
 A Visual Studio Custom Tool for generating a strongly typed helper class for accessing localized resources from a .ResW file.
