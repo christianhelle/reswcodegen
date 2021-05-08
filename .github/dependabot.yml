@@ -1,0 +1,41 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.VisualStudio.Threading.Analyzers
+    versions:
+    - 16.8.55
+    - 16.9.54
+  - dependency-name: Microsoft.VisualStudio.Validation
+    versions:
+    - 16.8.33
+    - 16.9.28
+  - dependency-name: Microsoft.VisualStudio.TextManager.Interop.8.0
+    versions:
+    - 16.7.30328.74
+  - dependency-name: Microsoft.VisualStudio.OLE.Interop
+    versions:
+    - 16.7.30328.74
+  - dependency-name: Microsoft.VisualStudio.Shell.Interop.9.0
+    versions:
+    - 16.7.30328.74
+  - dependency-name: Microsoft.VisualStudio.Shell.Interop
+    versions:
+    - 16.7.30328.74
+  - dependency-name: Microsoft.VisualStudio.Shell.Immutable.10.0
+    versions:
+    - 15.0.25415
+  - dependency-name: Microsoft.VisualStudio.Shell.Immutable.11.0
+    versions:
+    - 15.0.25415
+  - dependency-name: EnvDTE
+    versions:
+    - 16.7.30508.193
+  - dependency-name: Microsoft.VisualStudio.Shell.Interop.8.0
+    versions:
+    - 16.7.30328.74
