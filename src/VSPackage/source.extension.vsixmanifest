@@ -34,7 +34,7 @@
     </Assets>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor"
-                      Version="[14.0,17.0)"
+                      Version="[14.0,18.0)"
                       DisplayName="Visual Studio core editor" />
     </Prerequisites>
 </PackageManifest>
