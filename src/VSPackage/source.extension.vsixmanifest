@@ -4,7 +4,7 @@
                  xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
         <Identity Id="6a4c1726-440f-4b2d-a2e5-711277da6099"
-                  Version="1.5.2"
+                  Version="1.5.3"
                   Language="en-US"
                   Publisher="Christian Resma Helle" />
         <DisplayName>ResW File Code Generator</DisplayName>
@@ -13,9 +13,10 @@
         <License>License.txt</License>
     </Metadata>
     <Installation>
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" 
-                            Version="[14.0, 17.0)" />
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" 
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0, 18.0)">
+            <ProductArchitecture>x86</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Id="Microsoft.VisualStudio.Community"
                             Version="[17.0, 18.0)">
             <ProductArchitecture>amd64</ProductArchitecture>
         </InstallationTarget>
