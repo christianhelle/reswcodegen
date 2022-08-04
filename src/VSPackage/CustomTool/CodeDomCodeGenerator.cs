@@ -10,9 +10,8 @@ using Microsoft.CSharp;
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 {
     public class CodeDomCodeGenerator : CodeGenerator, IDisposable
-    {  
+    {
         private readonly TypeAttributes? classAccessibility;
-        private readonly VisualStudioVersion visualStudioVersion;
         private readonly string className;
         private readonly CodeNamespace codeNamespace;
         private readonly CodeCompileUnit compileUnit;
@@ -22,13 +21,11 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                     string className,
                                     string defaultNamespace,
                                     CodeDomProvider codeDomProvider = null,
-                                    TypeAttributes? classAccessibility = null,
-                                    VisualStudioVersion visualStudioVersion = VisualStudioVersion.VS2012)
+                                    TypeAttributes? classAccessibility = null)
             : base(resourceParser, defaultNamespace)
         {
             this.className = className;
             this.classAccessibility = classAccessibility;
-            this.visualStudioVersion = visualStudioVersion;
             compileUnit = new CodeCompileUnit();
             provider = codeDomProvider ?? new CSharpCodeProvider();
             codeNamespace = new CodeNamespace(defaultNamespace);
@@ -56,7 +53,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             var targetClass = new CodeTypeDeclaration(className)
             {
                 IsClass = true,
-                IsPartial = true, 
+                IsPartial = true,
                 TypeAttributes = TypeAttributes.Sealed | (classAccessibility ?? TypeAttributes.Public),
                 Attributes = MemberAttributes.Public | MemberAttributes.Static | MemberAttributes.Final
             };
@@ -91,7 +88,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             resourceLoaderProperty.GetStatements.Add(new CodeMethodReturnStatement(new CodeFieldReferenceExpression(null, "resourceLoader")));
             resourceLoaderProperty.SetStatements.Add(
                 new CodeAssignStatement(
-                    new CodeVariableReferenceExpression(resourceLoaderFieldName), 
+                    new CodeVariableReferenceExpression(resourceLoaderFieldName),
                     new CodePropertySetValueReferenceExpression()));
             targetClass.Members.Add(resourceLoaderProperty);
 
@@ -101,10 +98,10 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 Attributes = MemberAttributes.Public | MemberAttributes.Static
             };
 
-            var executingAssemblyVar = new CodeVariableDeclarationStatement(typeof (string), "executingAssemblyName");
+            var executingAssemblyVar = new CodeVariableDeclarationStatement(typeof(string), "executingAssemblyName");
             var executingAssemblyInit = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblyName"),
                                                                 new CodeSnippetExpression("Windows.UI.Xaml.Application.Current.GetType().AssemblyQualifiedName"));
-            var executingAssemblySplit = new CodeVariableDeclarationStatement(typeof (string[]), "executingAssemblySplit");
+            var executingAssemblySplit = new CodeVariableDeclarationStatement(typeof(string[]), "executingAssemblySplit");
             var executingAssemblyInit2 = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblySplit"),
                                                                  new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("executingAssemblyName"),
                                                                                                 "Split",
@@ -113,10 +110,10 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                                  new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("executingAssemblySplit"),
                                                                                                 new CodePrimitiveExpression(1)));
 
-            var currentAssemblyVar = new CodeVariableDeclarationStatement(typeof (string), "currentAssemblyName");
+            var currentAssemblyVar = new CodeVariableDeclarationStatement(typeof(string), "currentAssemblyName");
             var currentAssemblyInit = new CodeAssignStatement(new CodeVariableReferenceExpression("currentAssemblyName"),
                                                               new CodePropertyReferenceExpression(new CodeTypeOfExpression(className), "AssemblyQualifiedName"));
-            var currentAssemblySplit = new CodeVariableDeclarationStatement(typeof (string[]), "currentAssemblySplit");
+            var currentAssemblySplit = new CodeVariableDeclarationStatement(typeof(string[]), "currentAssemblySplit");
             var currentAssemblyInit2 = new CodeAssignStatement(new CodeVariableReferenceExpression("currentAssemblySplit"),
                                                                new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("currentAssemblyName"),
                                                                                               "Split",
@@ -129,25 +126,17 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 new CodeSnippetExpression("executingAssemblyName.Equals(currentAssemblyName)"),
                 new CodeStatement[] // true
                 {
-                    visualStudioVersion == VisualStudioVersion.VS2013
-                        ? new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
-                                                  new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
-                                                                                 "GetForCurrentView",
-                                                                                 new CodeSnippetExpression("\"" + className + "\"")))
-                        : new CodeAssignStatement(new CodeFieldReferenceExpression(null, resourceLoaderFieldName),
-                                                  new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
-                                                                                 new CodeSnippetExpression("\"" + className + "\"")))
+                    new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
+                                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
+                                                                           "GetForCurrentView",
+                                                                           new CodeSnippetExpression("\"" + className + "\"")))
                 },
                 new CodeStatement[] // false
                 {
-                    visualStudioVersion == VisualStudioVersion.VS2013
-                        ? new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
-                                                  new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
-                                                                                 "GetForCurrentView",
-                                                                                 new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
-                        : new CodeAssignStatement(new CodeFieldReferenceExpression(null, resourceLoaderFieldName),
-                                                  new CodeObjectCreateExpression(new CodeTypeReference("ResourceLoader"),
-                                                                                 new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
+                    new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
+                                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
+                                                                           "GetForCurrentView",
+                                                                           new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
                 });
 
             initializeResourceLoader.Statements.Add(executingAssemblyVar);
@@ -174,7 +163,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                     Name = item.Name.Replace(".", "_").Trim(),
                     Attributes = MemberAttributes.Public | MemberAttributes.Static,
                     HasGet = true,
-                    Type = new CodeTypeReference(typeof (string))
+                    Type = new CodeTypeReference(typeof(string))
                 };
 
                 property.Comments.Add(new CodeCommentStatement("<summary>", true));
@@ -185,7 +174,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                         new CodeMethodInvokeExpression(
                             new CodeFieldReferenceExpression(null, "Resource"),
                             "GetString",
-                            new CodePrimitiveExpression(item.Name.Replace(".","/")))));
+                            new CodePrimitiveExpression(item.Name.Replace(".", "/")))));
 
                 targetClass.Members.Add(property);
             }
@@ -198,7 +187,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 
         private string GenerateCodeFromCompileUnit()
         {
-            var options = new CodeGeneratorOptions {BracingStyle = "C"};
+            var options = new CodeGeneratorOptions { BracingStyle = "C" };
 
             var code = new StringBuilder();
 
