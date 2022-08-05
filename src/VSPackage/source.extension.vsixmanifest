@@ -4,7 +4,7 @@
                  xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
         <Identity Id="6a4c1726-440f-4b2d-a2e5-711277da6099"
-                  Version="1.5.3"
+                  Version="1.0.0"
                   Language="en-US"
                   Publisher="Christian Resma Helle" />
         <DisplayName>ResW File Code Generator</DisplayName>

@@ -1,7 +1,3 @@
-[![VSIX](https://github.com/christianhelle/reswcodegen/actions/workflows/vsix.yml/badge.svg)](https://github.com/christianhelle/reswcodegen/actions/workflows/vsix.yml)
-[![Version](https://vsmarketplacebadge.apphb.com/version/ChristianResmaHelle.ResWFileCodeGenerator.svg)](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator) 
-[![Installs](https://vsmarketplacebadge.apphb.com/downloads-short/ChristianResmaHelle.ResWFileCodeGenerator.svg)](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator) 
-[![Rating](https://vsmarketplacebadge.apphb.com/rating-star/ChristianResmaHelle.ResWFileCodeGenerator.svg)](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator)
 [![buymeacoffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/christianhelle)
 
 # ResW File Code Generator
