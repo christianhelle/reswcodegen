@@ -1,4 +1,4 @@
-[![Build Status](https://christianhelle.visualstudio.com/ResW%20File%20Code%20Generator/_apis/build/status/CI%20Build?branchName=master)](https://christianhelle.visualstudio.com/ResW%20File%20Code%20Generator/_build/latest?definitionId=11&branchName=master)
+[![VSIX](https://github.com/christianhelle/reswcodegen/actions/workflows/vsix.yml/badge.svg)](https://github.com/christianhelle/reswcodegen/actions/workflows/vsix.yml)
 [![Version](https://vsmarketplacebadge.apphb.com/version/ChristianResmaHelle.ResWFileCodeGenerator.svg)](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator) 
 [![Installs](https://vsmarketplacebadge.apphb.com/downloads-short/ChristianResmaHelle.ResWFileCodeGenerator.svg)](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator) 
 [![Rating](https://vsmarketplacebadge.apphb.com/rating-star/ChristianResmaHelle.ResWFileCodeGenerator.svg)](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator)
