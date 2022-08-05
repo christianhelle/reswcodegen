@@ -1,0 +1,60 @@
+name: VSIX
+
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore:
+      - '.github/workflows/**'
+      - '!.github/workflows/vsix.yml'
+      - 'images/**'
+      - 'README.md'
+      - 'LICENSE'
+      - 'src/publish-manifest.json'
+      - 'src/publish.ps1'
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+  schedule:
+    - cron: '0 8 * * *'
+
+env:
+  VERSION: 1.7.0.${{ github.run_number }}
+
+jobs:
+  build:
+
+    runs-on: windows-2022
+    timeout-minutes: 20
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Update Version
+      run: ((Get-Content -Path VSPackage/source.extension.vsixmanifest -Raw) -Replace "1.0.0", "${{ env.VERSION }}") | Set-Content -Path VSPackage/source.extension.vsixmanifest
+      working-directory: src
+      shell: pwsh
+
+    - name: Cake Build
+      run: powershell ./build.ps1 --target VSIX
+      working-directory: src
+
+    - name: Move build output
+      run: mv src/VSPackage/bin/Release/VSPackage.vsix ResWFileCodeGenerator-${{ env.VERSION }}.vsix
+
+    - name: Publish artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Artifacts
+        path: |
+          *.vsix
+          docs/Marketplace*.md
+
+    - name: Publish to Open VSIX Gallery
+      if: github.ref == 'refs/heads/master'
+      run: |
+        (new-object Net.WebClient).DownloadString("https://raw.github.com/madskristensen/ExtensionScripts/master/AppVeyor/vsix.ps1") | iex
+        Vsix-PushArtifacts
+        Vsix-PublishToGallery -path ResWFileCodeGenerator-${{ env.VERSION }}.vsix -readmeUrl https://raw.githubusercontent.com/christianhelle/reswcodegen/master/docs/Marketplace.md
+      shell: pwsh
