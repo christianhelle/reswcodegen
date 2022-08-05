@@ -1,5 +1,6 @@
+#tool "nuget:?package=Microsoft.TestPlatform&version=16.5.0"
+
 var target = Argument("target", "Default");
-var configuration = "Release";
 FilePath solutionPath = File("./ReswCodeGen.sln");
 
 Task("Clean")
@@ -16,7 +17,7 @@ Task("Restore")
 	.Does(() =>
 {
 	Information("Restoring solution...");
-	NuGetRestore(solutionPath);
+    DotNetRestore(solutionPath.ToString());
 });
 
 Task("Build")
@@ -26,17 +27,16 @@ Task("Build")
         MSBuild(solutionPath, settings =>
             settings.SetPlatformTarget(PlatformTarget.MSIL)
                 .SetMSBuildPlatform(MSBuildPlatform.x86)
-                .UseToolVersion(MSBuildToolVersion.VS2022)
-                .WithProperty("TreatWarningsAsErrors","true")
+                .UseToolVersion(MSBuildToolVersion.VS2019)
                 .WithTarget("Build")
-                .SetConfiguration(configuration));
+                .SetConfiguration("Release"));
     });
 
 Task("Run-Unit-Tests")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    MSTest("./**/bin/" + configuration + "/*.Tests.dll");
+    MSTest("./**/bin/Release/*.Tests.dll");
 });
 
 Task("Post-Build")
