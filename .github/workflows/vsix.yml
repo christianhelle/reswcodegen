@@ -49,7 +49,7 @@ jobs:
         name: Artifacts
         path: |
           *.vsix
-          docs/Marketplace*.md
+          docs/Marketplace.md
 
     - name: Publish to Open VSIX Gallery
       if: github.ref == 'refs/heads/master'
