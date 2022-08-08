@@ -13,6 +13,7 @@
         <License>License.txt</License>
         <Icon>Resources\Icon.png</Icon>
         <PreviewImage>Resources\Icon.png</PreviewImage>
+        <Tags>ResW; Windows Store Apps</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0, 17.0)">
