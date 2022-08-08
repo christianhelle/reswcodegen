@@ -89,10 +89,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Resources\Icon.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
-  <Content Include="Resources\Icon.png">
-    <IncludeInVSIX>true</IncludeInVSIX>
-  </Content>
   <ItemGroup>    
     <PackageReference Include="Microsoft.VisualStudio.SDK">
       <Version>15.0.1</Version>
