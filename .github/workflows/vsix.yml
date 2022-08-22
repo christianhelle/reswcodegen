@@ -58,3 +58,4 @@ jobs:
         Vsix-PushArtifacts
         Vsix-PublishToGallery -path ResWFileCodeGenerator-${{ env.VERSION }}.vsix -readmeUrl https://raw.githubusercontent.com/christianhelle/reswcodegen/master/docs/Marketplace.md
       shell: pwsh
+      continue-on-error: true
