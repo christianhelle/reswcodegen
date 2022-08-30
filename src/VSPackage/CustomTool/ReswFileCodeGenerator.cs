@@ -1,9 +1,7 @@
 ﻿using System;
-using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -43,6 +41,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             }
             catch (Exception e)
             {
+                AppInsightsClient.Instance.TrackError(e);
                 MessageBox.Show(e.Message, "Unable to generate code");
                 throw;
             }
