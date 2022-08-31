@@ -18,8 +18,9 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
         public ReswFileCSharpCodeGeneratorInternal()
             : base(new CSharpCodeProvider(), TypeAttributes.NestedAssembly)
         {
-            AppInsightsClient.Instance.TrackFeatureUsage("C# ResW File Code Generator (Internal class)");
         }
+
+        protected override string GeneratorName => "C# ResW File Code Generator (Internal class)";
 
         public override int DefaultExtension(out string pbstrDefaultExtension)
         {

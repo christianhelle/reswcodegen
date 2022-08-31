@@ -13,6 +13,8 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
         private readonly CodeDomProvider codeDomProvider;
         private readonly TypeAttributes? classAccessibility;
 
+        protected abstract string GeneratorName { get; }
+
         protected ReswFileCodeGenerator(CodeDomProvider codeDomProvider, TypeAttributes? classAccessibility = null)
         {
             this.codeDomProvider = codeDomProvider;
@@ -44,6 +46,10 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 AppInsightsClient.Instance.TrackError(e);
                 MessageBox.Show(e.Message, "Unable to generate code");
                 throw;
+            }
+            finally
+            {
+                AppInsightsClient.Instance.TrackFeatureUsage(GeneratorName);
             }
 
             return 0;

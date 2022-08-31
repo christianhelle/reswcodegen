@@ -17,8 +17,9 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
         public ReswFileVisualBasicCodeGenerator()
             : base(new VBCodeProvider())
         {
-            AppInsightsClient.Instance.TrackFeatureUsage("Visual Basic ResW File Code Generator");
         }
+
+        protected override string GeneratorName => "Visual Basic ResW File Code Generator";
 
         public override int DefaultExtension(out string pbstrDefaultExtension)
         {
