@@ -16,8 +16,8 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             try
             {
                 var configuration = TelemetryConfiguration.CreateDefault();
-                configuration.ConnectionString =
-                    "InstrumentationKey=eba88f76-06da-4ef8-a0fe-162b1a70f871;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/";
+                configuration.InstrumentationKey = "eba88f76-06da-4ef8-a0fe-162b1a70f871";
+                //// configuration.ConnectionString = "InstrumentationKey=eba88f76-06da-4ef8-a0fe-162b1a70f871;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/";
 
                 telemetryClient = new TelemetryClient(configuration);
             }
