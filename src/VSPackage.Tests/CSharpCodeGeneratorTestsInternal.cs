@@ -63,7 +63,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         [TestMethod]
         public void ResourceLoaderInitializedWithClassName()
         {
-            Assert.IsTrue(actual.Contains("new ResourceLoader(currentAssemblyName + \"/Resources\");"));
+            Assert.IsTrue(actual.Contains("ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\");"));
         }
 
         [TestMethod]

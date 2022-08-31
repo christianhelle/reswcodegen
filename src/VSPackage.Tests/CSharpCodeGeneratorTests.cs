@@ -1,5 +1,4 @@
 using System.IO;
-using System.Linq;
 using ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -77,7 +76,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         [TestMethod]
         public void ResourceLoaderInitializedWithClassName()
         {
-            Assert.IsTrue(actual.Contains("new ResourceLoader(currentAssemblyName + \"/Resources\");"));
+            Assert.IsTrue(actual.Contains("ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\");"));
         }
 
         [TestMethod]
