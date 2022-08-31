@@ -8,11 +8,11 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
     [ExcludeFromCodeCoverage]
     public class AppInsightsClient
     {
-        private TelemetryClient telemetryClient;
+        private readonly TelemetryClient telemetryClient;
 
-        public void Initialize()
+        public AppInsightsClient()
         {
-            var configuration = new TelemetryConfiguration();
+            var configuration = TelemetryConfiguration.CreateDefault();
             configuration.ConnectionString =
                 "InstrumentationKey=eba88f76-06da-4ef8-a0fe-162b1a70f871;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/";
 
@@ -26,22 +26,12 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 
         public void TrackFeatureUsage(string featureName, params string[] tags)
         {
-            if (telemetryClient == null)
-            {
-                Initialize();
-            }
-
             telemetryClient.TrackEvent(featureName);
             telemetryClient.Flush();
         }
 
         public void TrackError(Exception exception)
         {
-            if (telemetryClient == null)
-            {
-                Initialize();
-            }
-
             telemetryClient.TrackException(exception);
             telemetryClient.Flush();
         }

@@ -66,10 +66,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VSPackage.Core\VSPackage.Core.csproj">
-      <Project>{bb596b8a-ff5a-4c32-bbda-377014d0467a}</Project>
-      <Name>VSPackage.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VSPackage\VSPackage.csproj">
       <Project>{05f77bfb-ce11-4948-8174-f938c5b7f31c}</Project>
       <Name>VSPackage</Name>
