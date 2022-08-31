@@ -20,6 +20,8 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
         {
         }
 
+        protected override string GeneratorName => "C# ResW File Code Generator (Internal class)";
+
         public override int DefaultExtension(out string pbstrDefaultExtension)
         {
             pbstrDefaultExtension = ".cs";

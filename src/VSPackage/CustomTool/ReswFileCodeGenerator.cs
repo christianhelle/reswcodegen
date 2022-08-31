@@ -1,9 +1,7 @@
 ﻿using System;
-using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -14,6 +12,8 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
     {
         private readonly CodeDomProvider codeDomProvider;
         private readonly TypeAttributes? classAccessibility;
+
+        protected abstract string GeneratorName { get; }
 
         protected ReswFileCodeGenerator(CodeDomProvider codeDomProvider, TypeAttributes? classAccessibility = null)
         {
@@ -43,8 +43,13 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             }
             catch (Exception e)
             {
+                AppInsightsClient.Instance.TrackError(e);
                 MessageBox.Show(e.Message, "Unable to generate code");
                 throw;
+            }
+            finally
+            {
+                AppInsightsClient.Instance.TrackFeatureUsage(GeneratorName);
             }
 
             return 0;

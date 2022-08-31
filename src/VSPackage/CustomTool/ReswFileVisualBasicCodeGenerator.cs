@@ -9,7 +9,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
     [ProvideObject(typeof(ReswFileVisualBasicCodeGenerator))]
     [CodeGeneratorRegistration(typeof(ReswFileVisualBasicCodeGenerator),
                                "Visual Basic ResW File Code Generator",
-                               Guids.ReswFileVisualBasicCodeGenerator, 
+                               Guids.ReswFileVisualBasicCodeGenerator,
                                GeneratesDesignTimeSource = true,
                                GeneratorRegKeyName = "ReswFileCodeGenerator")]
     public class ReswFileVisualBasicCodeGenerator : ReswFileCodeGenerator
@@ -18,6 +18,8 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             : base(new VBCodeProvider())
         {
         }
+
+        protected override string GeneratorName => "Visual Basic ResW File Code Generator";
 
         public override int DefaultExtension(out string pbstrDefaultExtension)
         {

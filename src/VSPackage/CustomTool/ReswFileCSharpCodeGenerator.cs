@@ -7,10 +7,10 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
     [Guid("98983F6D-BC77-46AC-BA5A-8D9E8763F0D2")]
     [ComVisible(true)]
     [ProvideObject(typeof(ReswFileCSharpCodeGenerator))]
-    [CodeGeneratorRegistration(typeof(ReswFileCSharpCodeGenerator), 
-                               "C# ResW File Code Generator", 
-                               Guids.ReswFileCSharpCodeGenerator, 
-                               GeneratesDesignTimeSource = true, 
+    [CodeGeneratorRegistration(typeof(ReswFileCSharpCodeGenerator),
+                               "C# ResW File Code Generator",
+                               Guids.ReswFileCSharpCodeGenerator,
+                               GeneratesDesignTimeSource = true,
                                GeneratorRegKeyName = "ReswFileCodeGenerator")]
     public class ReswFileCSharpCodeGenerator : ReswFileCodeGenerator
     {
@@ -18,6 +18,8 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             : base(new CSharpCodeProvider())
         {
         }
+
+        protected override string GeneratorName => "C# ResW File Code Generator";
 
         public override int DefaultExtension(out string pbstrDefaultExtension)
         {
