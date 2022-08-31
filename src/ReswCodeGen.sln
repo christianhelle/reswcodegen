@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage", "VSPackage\VSPa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage.Tests", "VSPackage.Tests\VSPackage.Tests.csproj", "{F2B82735-4AE9-4365-8C0D-8391564359AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage.Core", "VSPackage.Core\VSPackage.Core.csproj", "{BB596B8A-FF5A-4C32-BBDA-377014D0467A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB596B8A-FF5A-4C32-BBDA-377014D0467A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB596B8A-FF5A-4C32-BBDA-377014D0467A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB596B8A-FF5A-4C32-BBDA-377014D0467A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB596B8A-FF5A-4C32-BBDA-377014D0467A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
