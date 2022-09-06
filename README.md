@@ -7,6 +7,8 @@
 # ResW File Code Generator
 A Visual Studio Custom Tool for generating a strongly typed helper class for accessing localized resources from a .ResW file.
 
+#### Download from **[Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator)**
+
 **Features**
 
 - Define custom namespace for the generated file
