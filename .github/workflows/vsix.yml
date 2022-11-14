@@ -16,8 +16,6 @@ on:
   pull_request:
     branches:
       - '*'
-  schedule:
-    - cron: '0 8 * * *'
 
 env:
   VERSION: 1.7.0.${{ github.run_number }}
