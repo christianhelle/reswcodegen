@@ -35,6 +35,7 @@ jobs:
 
     - name: Restore
       run: dotnet restore
+      working-directory: src
 
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.1
