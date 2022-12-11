@@ -24,7 +24,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
         {
             uint len;
             TEXT.ConvertToIntPtr(out len);
-            Assert.AreNotEqual(TEXT.Length, len);
+            Assert.IsFalse(TEXT.Length == len);
         }
 
         [TestMethod]
