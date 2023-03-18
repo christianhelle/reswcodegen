@@ -37,6 +37,7 @@ jobs:
 
     - name: Build
       run: msbuild ReswCodeGen.sln /property:Configuration=Release /t:Rebuild
+      working-directory: src
 
     - name: Move build output
       run: mv src/VSPackage/bin/Release/ResWFileCodeGenerator.vsix ResWFileCodeGenerator-${{ env.VERSION }}.vsix
