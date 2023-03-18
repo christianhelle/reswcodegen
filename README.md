@@ -15,7 +15,7 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
 - Auto-updating of generated code file when changes are made to the .ResW Resource file
 - XML documentation style comments like "Localized resource similar to '[the value]'"
 - Supports Visual Studio 2015, 2017, 2019, and 2022
-- Supports dotted keys - Replaces **.** with **_** (e.g. `Something.Awesome` = `Something_Awesome`)
+- Supports dotted keys `-` Replaces `.` with **_** (e.g. `Something.Awesome` = `Something_Awesome`)
 
 **Custom Tools**
 
