@@ -122,7 +122,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                                new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("currentAssemblySplit"),
                                                                                               new CodePrimitiveExpression(1)));
 
-            var createResourceLoader = new CodeConditionStatement(
+            var coreWindowTrueStatement = new CodeConditionStatement(
                 new CodeSnippetExpression("executingAssemblyName.Equals(currentAssemblyName)"),
                 new CodeStatement[] // true
                 {
@@ -138,6 +138,26 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                                            "GetForCurrentView",
                                                                            new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
                 });
+            var coreWindowFalseStatement = new CodeConditionStatement(
+                new CodeSnippetExpression("executingAssemblyName.Equals(currentAssemblyName)"),
+                new CodeStatement[] // true
+                {
+                    new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
+                                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
+                                                                           "GetForViewIndependentUse",
+                                                                           new CodeSnippetExpression("\"" + className + "\"")))
+                },
+                new CodeStatement[] // false
+                {
+                    new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
+                                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
+                                                                           "GetForViewIndependentUse",
+                                                                           new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
+                });
+            var createResourceLoader = new CodeConditionStatement(
+                new CodeSnippetExpression("Windows.UI.Core.CoreWindow.GetForCurrentThread() != null"),
+                new CodeStatement[] { coreWindowTrueStatement },
+                new CodeStatement[] { coreWindowFalseStatement });
 
             initializeResourceLoader.Statements.Add(executingAssemblyVar);
             initializeResourceLoader.Statements.Add(executingAssemblyInit);

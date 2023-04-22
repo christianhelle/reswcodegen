@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
 {
     [TestClass]
-    [DeploymentItem("Resources/Valid/Resources.resw")]
+    [DeploymentItem("Resources/Resources.resw")]
     public class CodeGeneratorFactoryTests
     {
         private string reswFileContents;
