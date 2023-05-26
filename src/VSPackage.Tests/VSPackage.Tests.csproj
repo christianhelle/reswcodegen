@@ -76,7 +76,7 @@
       <Version>3.0.3</Version>
     </PackageReference>
     <PackageReference Include="MSTest.TestFramework">
-      <Version>3.0.2</Version>
+      <Version>3.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
