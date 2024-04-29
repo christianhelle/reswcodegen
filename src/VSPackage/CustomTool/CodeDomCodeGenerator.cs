@@ -95,18 +95,6 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 Attributes = MemberAttributes.Public | MemberAttributes.Static
             };
 
-            var executingAssemblyVar = new CodeVariableDeclarationStatement(typeof(string), "executingAssemblyName");
-            var executingAssemblyInit = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblyName"),
-                                                                new CodeSnippetExpression("Windows.UI.Xaml.Application.Current.GetType().AssemblyQualifiedName"));
-            var executingAssemblySplit = new CodeVariableDeclarationStatement(typeof(string[]), "executingAssemblySplit");
-            var executingAssemblyInit2 = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblySplit"),
-                                                                 new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("executingAssemblyName"),
-                                                                                                "Split",
-                                                                                                new CodePrimitiveExpression(',')));
-            var executingAssemblyInit3 = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblyName"),
-                                                                 new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("executingAssemblySplit"),
-                                                                                                new CodePrimitiveExpression(1)));
-
             var currentAssemblyVar = new CodeVariableDeclarationStatement(typeof(string), "currentAssemblyName");
             var currentAssemblyInit = new CodeAssignStatement(new CodeVariableReferenceExpression("currentAssemblyName"),
                                                               new CodePropertyReferenceExpression(new CodeTypeOfExpression(className), "AssemblyQualifiedName"));
@@ -119,48 +107,21 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                                new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("currentAssemblySplit"),
                                                                                               new CodePrimitiveExpression(1)));
 
-            var coreWindowTrueStatement = new CodeConditionStatement(
-                new CodeSnippetExpression("executingAssemblyName.Equals(currentAssemblyName)"),
-                new CodeStatement[] // true
-                {
-                    new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
-                                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
-                                                                           "GetForCurrentView",
-                                                                           new CodeSnippetExpression("\"" + className + "\"")))
-                },
-                new CodeStatement[] // false
-                {
-                    new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
-                                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
-                                                                           "GetForCurrentView",
-                                                                           new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
-                });
-            var coreWindowFalseStatement = new CodeConditionStatement(
-                new CodeSnippetExpression("executingAssemblyName.Equals(currentAssemblyName)"),
-                new CodeStatement[] // true
-                {
-                    new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
-                                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
-                                                                           "GetForViewIndependentUse",
-                                                                           new CodeSnippetExpression("\"" + className + "\"")))
-                },
-                new CodeStatement[] // false
-                {
-                    new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
-                                            new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
-                                                                           "GetForViewIndependentUse",
-                                                                           new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
-                });
+            var coreWindowTrueStatement =
+                new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
+                                        new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
+                                                                       "GetForCurrentView",
+                                                                       new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")));
+            var coreWindowFalseStatement = 
+                new CodeAssignStatement(new CodeFieldReferenceExpression(null, "resourceLoader"),
+                                        new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("ResourceLoader"),
+                                                                       "GetForViewIndependentUse",
+                                                                       new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")));
             var createResourceLoader = new CodeConditionStatement(
                 new CodeSnippetExpression("Windows.UI.Core.CoreWindow.GetForCurrentThread() != null"),
                 new CodeStatement[] { coreWindowTrueStatement },
                 new CodeStatement[] { coreWindowFalseStatement });
 
-            initializeResourceLoader.Statements.Add(executingAssemblyVar);
-            initializeResourceLoader.Statements.Add(executingAssemblyInit);
-            initializeResourceLoader.Statements.Add(executingAssemblySplit);
-            initializeResourceLoader.Statements.Add(executingAssemblyInit2);
-            initializeResourceLoader.Statements.Add(executingAssemblyInit3);
             initializeResourceLoader.Statements.Add(currentAssemblyVar);
             initializeResourceLoader.Statements.Add(currentAssemblyInit);
             initializeResourceLoader.Statements.Add(currentAssemblySplit);
