@@ -97,15 +97,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 
             var executingAssemblyVar = new CodeVariableDeclarationStatement(typeof(string), "executingAssemblyName");
             var executingAssemblyInit = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblyName"),
-                                                                new CodeSnippetExpression("Windows.UI.Xaml.Application.Current.GetType().AssemblyQualifiedName"));
-            var executingAssemblySplit = new CodeVariableDeclarationStatement(typeof(string[]), "executingAssemblySplit");
-            var executingAssemblyInit2 = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblySplit"),
-                                                                 new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("executingAssemblyName"),
-                                                                                                "Split",
-                                                                                                new CodePrimitiveExpression(',')));
-            var executingAssemblyInit3 = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblyName"),
-                                                                 new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("executingAssemblySplit"),
-                                                                                                new CodePrimitiveExpression(1)));
+                                                                new CodeSnippetExpression("global::System.Reflection.Assembly.GetEntryAssembly().GetName().Name"));
 
             var currentAssemblyVar = new CodeVariableDeclarationStatement(typeof(string), "currentAssemblyName");
             var currentAssemblyInit = new CodeAssignStatement(new CodeVariableReferenceExpression("currentAssemblyName"),
@@ -116,8 +108,8 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                                                               "Split",
                                                                                               new CodePrimitiveExpression(',')));
             var currentAssemblyInit3 = new CodeAssignStatement(new CodeVariableReferenceExpression("currentAssemblyName"),
-                                                               new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("currentAssemblySplit"),
-                                                                                              new CodePrimitiveExpression(1)));
+                                                               new CodeMethodInvokeExpression(new CodeArrayIndexerExpression(new CodeVariableReferenceExpression("currentAssemblySplit"),
+                                                                                                                             new CodePrimitiveExpression(1)), "Trim"));
 
             var coreWindowTrueStatement = new CodeConditionStatement(
                 new CodeSnippetExpression("executingAssemblyName.Equals(currentAssemblyName)"),
@@ -158,9 +150,6 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 
             initializeResourceLoader.Statements.Add(executingAssemblyVar);
             initializeResourceLoader.Statements.Add(executingAssemblyInit);
-            initializeResourceLoader.Statements.Add(executingAssemblySplit);
-            initializeResourceLoader.Statements.Add(executingAssemblyInit2);
-            initializeResourceLoader.Statements.Add(executingAssemblyInit3);
             initializeResourceLoader.Statements.Add(currentAssemblyVar);
             initializeResourceLoader.Statements.Add(currentAssemblyInit);
             initializeResourceLoader.Statements.Add(currentAssemblySplit);
