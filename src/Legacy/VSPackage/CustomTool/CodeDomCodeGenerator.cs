@@ -51,7 +51,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             codeNamespace.Comments.Add(
                 new CodeCommentStatement("--------------------------------------------------------------------------------------------------"));
 
-            codeNamespace.Imports.Add(new CodeNamespaceImport("Windows.ApplicationModel.Resources"));
+            codeNamespace.Imports.Add(new CodeNamespaceImport("global::Windows.ApplicationModel.Resources"));
 
             var targetClass = new CodeTypeDeclaration(className)
             {
@@ -71,7 +71,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 
             var executingAssemblyVar = new CodeVariableDeclarationStatement(typeof (string), "executingAssemblyName");
             var executingAssemblyInit = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblyName"),
-                                                                new CodeSnippetExpression("Windows.UI.Xaml.Application.Current.GetType().AssemblyQualifiedName"));
+                                                                new CodeSnippetExpression("global::Windows.UI.Xaml.Application.Current.GetType().AssemblyQualifiedName"));
             var executingAssemblySplit = new CodeVariableDeclarationStatement(typeof (string[]), "executingAssemblySplit");
             var executingAssemblyInit2 = new CodeAssignStatement(new CodeVariableReferenceExpression("executingAssemblySplit"),
                                                                  new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("executingAssemblyName"),

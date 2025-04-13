@@ -45,7 +45,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             codeNamespace.Comments.Add(
                 new CodeCommentStatement("--------------------------------------------------------------------------------------------------"));
 
-            codeNamespace.Imports.Add(new CodeNamespaceImport("Windows.ApplicationModel.Resources"));
+            codeNamespace.Imports.Add(new CodeNamespaceImport("global::Windows.ApplicationModel.Resources"));
 
             var targetClass = new CodeTypeDeclaration(className)
             {
@@ -144,7 +144,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                                                            new CodeSnippetExpression("currentAssemblyName + \"/" + className + "\"")))
                 });
             var createResourceLoader = new CodeConditionStatement(
-                new CodeSnippetExpression("Windows.UI.Core.CoreWindow.GetForCurrentThread() != null"),
+                new CodeSnippetExpression("global::Windows.UI.Core.CoreWindow.GetForCurrentThread() != null"),
                 new CodeStatement[] { coreWindowTrueStatement },
                 new CodeStatement[] { coreWindowFalseStatement });
 
