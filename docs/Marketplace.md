@@ -30,7 +30,7 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
 
 **Example C# Usage**
 ```csharp
-string test1, test2, test3;
+string test1, test2, test3, test4;
 
 void LoadLocalizedStrings()
 {
@@ -43,13 +43,13 @@ void LoadLocalizedStrings()
 
 **Example VB Usage**
 ```vbnet
-Dim test1, test2, test3
+Dim test1, test2, test3, test4
 
 Private Sub LoadLocalizedStrings()
     test1 = VisualBasicUwpApp.Properties.Resources.Test1
     test2 = VisualBasicUwpApp.Properties.Resources.Test2
     test3 = VisualBasicUwpApp.Properties.Resources.Test3
-    test4 = VisualBasicUwpApp.Properties.Resources.Test_With_Dotted_Keys;
+    test4 = VisualBasicUwpApp.Properties.Resources.Test_With_Dotted_Keys
 End Sub
 ```
 
