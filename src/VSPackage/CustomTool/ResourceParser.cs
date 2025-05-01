@@ -41,7 +41,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 {
                     var commentElement = element.Descendants("comment").FirstOrDefault();
                     if (commentElement != null)
-                        item.Comment = commentElement.Value; 
+                        item.Comment = commentElement.Value;
                 }
 
                 list.Add(item);

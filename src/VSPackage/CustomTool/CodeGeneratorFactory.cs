@@ -1,4 +1,4 @@
-﻿using System.CodeDom.Compiler;
+using System.CodeDom.Compiler;
 using System.Reflection;
 
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool

@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 {

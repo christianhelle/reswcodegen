@@ -7,7 +7,7 @@ on:
       - 'release'
 
 env:
-  VERSION: 1.7.${{ github.run_number }}
+  VERSION: 1.8.${{ github.run_number }}
   NUGET_REPO_URL: 'https://api.nuget.org/v3/index.json'
 
 jobs:
@@ -23,8 +23,10 @@ jobs:
       with:
         setAllVars: true
 
-    - name: Update Version
-      run: ((Get-Content -Path VSPackage/source.extension.vsixmanifest -Raw) -Replace "1.0.0", "${{ env.VERSION }}") | Set-Content -Path VSPackage/source.extension.vsixmanifest
+    - name: Update Versions
+      run: >
+        ((Get-Content -Path VSPackage/source.extension.vsixmanifest -Raw) -Replace "1.0.0", "${{ env.VERSION }}") | Set-Content -Path VSPackage/source.extension.vsixmanifest;
+        ((Get-Content -Path VSPackage/Properties/AssemblyInfo.cs -Raw) -Replace "1.0.0.0", "${{ env.VERSION }}") | Set-Content -Path VSPackage/Properties/AssemblyInfo.cs;
       working-directory: src
       shell: pwsh
 

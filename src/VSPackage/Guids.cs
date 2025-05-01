@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage
 {
