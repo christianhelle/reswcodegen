@@ -1,88 +1,76 @@
-using System.IO;
-using ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool;
+using System.Linq;
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
 {
     [TestClass]
     [DeploymentItem("Resources/Resources.resw")]
-    public class CSharpCodeGeneratorTests
+    public class CSharpCodeGeneratorTests : CodeGeneratorTestsBase
     {
-        private string reswFileContents;
-        private const string FILE_PATH = "Resources.resw";
-        private string actual;
-        private ICodeGenerator target;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            reswFileContents = File.ReadAllText(FILE_PATH);
-
-            target = new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", reswFileContents);
-            actual = target.GenerateCode();
-        }
-
-        [TestMethod]
-        public void GenerateCodeDoesNotReturnNull()
-        {
-            Assert.IsNotNull(actual);
-        }
-
         [TestMethod]
         public void GeneratedCodeIsAPublicClass()
         {
-            Assert.IsTrue(actual.Contains("public sealed partial class"));
+            CompileGeneratedCode();
+
+            Assert.Contains("public sealed partial class", Actual);
+            Assert.IsFalse(GeneratedType.IsNested);
+            Assert.IsTrue(GeneratedType.IsPublic);
+            Assert.IsTrue(GeneratedType.IsSealed);
+            Assert.IsTrue(GeneratedType.IsClass);
         }
 
         [TestMethod]
         public void GeneratedCodeContainsPropertiesDefinedInResources()
         {
-            var resourceItems = target.ResourceParser.Parse();
+            CompileGeneratedCode();
+
+            var resourceItems = Target.ResourceParser.Parse();
 
             foreach (var item in resourceItems)
             {
-                var value = $"public static string {item.Name.Replace(".", "_")}";
-                Assert.IsTrue(actual.Contains(value));
+                var name = item.Name.Replace(".", "_");
+                var nameProperty = $"public static string {name}";
+                Assert.Contains(nameProperty, Actual);
+                Assert.IsTrue(GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static) != null);
+
+                var propertyInfo = GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static);
+                Assert.IsTrue(propertyInfo != null);
+                Assert.IsTrue(propertyInfo.PropertyType == typeof(string));
             }
         }
 
         [TestMethod]
         public void GeneratedCodeReplacesDottedKeysWithForwardSlash()
         {
-            var resourceItems = target.ResourceParser.Parse();
+            var resourceItems = Target.ResourceParser.Parse();
 
             foreach (var item in resourceItems)
             {
-                var value = $"GetString(\"{item.Name.Replace(".", "/")}\")";
-                Assert.IsTrue(actual.Contains(value));
+                var name = $"GetString(\"{item.Name.Replace(".", "/")}\")";
+                Assert.Contains(name, Actual);
             }
         }
 
         [TestMethod]
         public void GeneratedCodePropertiesContainsCommentsSimilarToValuesDefinedInResources()
         {
-            var resourceItems = target.ResourceParser.Parse();
+            var resourceItems = Target.ResourceParser.Parse();
 
             foreach (var item in resourceItems)
-                Assert.IsTrue(actual.Contains("Localized resource similar to \"" + item.Value + "\""));
+                Assert.Contains("Localized resource similar to \"" + item.Value + "\"", Actual);
         }
 
         [TestMethod]
         public void ClassNameEqualsFileNameWithoutExtension()
         {
-            Assert.IsTrue(actual.Contains("class Resources"));
+            Assert.Contains("class Resources", Actual);
         }
 
         [TestMethod]
         public void ResourceLoaderInitializedWithClassName()
         {
-            Assert.IsTrue(actual.Contains("ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\");"));
-        }
-
-        [TestMethod]
-        public void ContainsProjectUrl()
-        {
-            Assert.IsTrue(actual.Contains("http://bit.ly/reswcodegen"));
+            Assert.Contains("ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\");", Actual);
         }
     }
 }
