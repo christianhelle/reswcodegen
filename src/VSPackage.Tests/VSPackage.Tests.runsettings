@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <MSTest>
+    <DeleteDeploymentDirectoryAfterTestRunIsComplete>true</DeleteDeploymentDirectoryAfterTestRunIsComplete>
+    <DeployTestSourceDependencies>true</DeployTestSourceDependencies>
+    <OrderTestsByNameInClass>false</OrderTestsByNameInClass>
+    <ConsiderFixturesAsSpecialTests>true</ConsiderFixturesAsSpecialTests>
+    <!--<Parallelize>
+      <Scope>MethodLevel</Scope>
+    </Parallelize>-->
+  </MSTest>
+</RunSettings>

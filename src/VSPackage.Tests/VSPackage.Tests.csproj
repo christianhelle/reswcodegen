@@ -13,7 +13,9 @@
     <TestingExtensionsProfile>None</TestingExtensionsProfile>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <RunSettingsFilePath>$(MSBuildProjectDirectory)\VSPackage.Tests.runsettings</RunSettingsFilePath>
   </PropertyGroup>
+
   <ItemGroup>
     <Content Include="Resources\Resources.resw">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -25,6 +27,9 @@
     <Content Include="Resources\ResourcesWithoutValues.resw">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </Content>
+    <Content Update="VSPackage.Tests.runsettings">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
