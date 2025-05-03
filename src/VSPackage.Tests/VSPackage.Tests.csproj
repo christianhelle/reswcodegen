@@ -1,84 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="MSTest.SDK">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectName>VSPackage.Tests</ProjectName>
+    <AssemblyName>VSPackage.Tests</AssemblyName>
+    <RootNamespace>ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests</RootNamespace>
     <ProjectGuid>{F2B82735-4AE9-4365-8C0D-8391564359AB}</ProjectGuid>
     <OutputType>Library</OutputType>
+    <TargetFramework>net481-windows</TargetFramework>
+    <LangVersion>13.0</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests</RootNamespace>
-    <AssemblyName>VSPackage.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <TestingExtensionsProfile>None</TestingExtensionsProfile>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <RuntimeIdentifier>win</RuntimeIdentifier>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ClassNameExtractorTests.cs" />
-    <Compile Include="CodeGeneratorFactoryTests.cs" />
-    <Compile Include="CSharpCodeGeneratorTests.cs" />
-    <Compile Include="CSharpCodeGeneratorTestsInternal.cs" />
-    <Compile Include="ResourceParserErrorHandlingTests.cs" />
-    <Compile Include="ResourceParserTests.cs" />
-    <Compile Include="StringExtensionTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VisualBasicCodeGeneratorInternalTests.cs" />
-    <Compile Include="VisualBasicCodeGeneratorTests.cs" />
-  </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Resources.resw">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\ResourcesWithoutComments.resw">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Resources\ResourcesWithoutValues.resw">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+
+  <!-- Project References -->
   <ItemGroup>
     <ProjectReference Include="..\VSPackage\VSPackage.csproj">
       <Project>{05f77bfb-ce11-4948-8174-f938c5b7f31c}</Project>
       <Name>VSPackage</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="MSTest.TestAdapter">
-      <Version>3.8.3</Version>
-    </PackageReference>
-    <PackageReference Include="MSTest.TestFramework">
-      <Version>3.8.3</Version>
-    </PackageReference>
-  </ItemGroup>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
