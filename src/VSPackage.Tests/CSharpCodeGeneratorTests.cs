@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests;
 
 [TestClass]
-[DeploymentItem("Resources/Resources.resw")]
 public sealed class CSharpCodeGeneratorTests : CodeGeneratorTestsBase
 {
     #region A static field (to avoid repeating the same work for each test)

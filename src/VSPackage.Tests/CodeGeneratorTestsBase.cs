@@ -13,6 +13,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests;
 using ICodeGenerator = VSPackage.CustomTool.ICodeGenerator;
 
+[DeploymentItem("Resources/Resources.resw")]
 public abstract class CodeGeneratorTestsBase
 {
     protected const string FILE_PATH = "Resources.resw";
@@ -67,16 +68,19 @@ public abstract class CodeGeneratorTestsBase
 
     protected CodeGeneratorTestsBase(StaticData staticData, TypeAttributes? classAccessibility = null, CodeDomProvider provider = null)
     {
-        this.staticData = staticData;
+        lock (staticData)
+        {
+            this.staticData = staticData;
 
-        this.ClassAccessibility ??= classAccessibility;
-        this.Provider ??= provider;
+            this.ClassAccessibility ??= classAccessibility;
+            this.Provider ??= provider;
 
-        this.ReswFileContents ??= File.ReadAllText(FILE_PATH);
+            this.ReswFileContents ??= File.ReadAllText(FILE_PATH);
 
-        this.Target ??= new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", ReswFileContents, Provider, classAccessibility);
-        this.Provider = this.Target.Provider;
-        this.Actual ??= this.Target.GenerateCode();
+            this.Target ??= new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", ReswFileContents, Provider, classAccessibility);
+            this.Provider = this.Target.Provider;
+            this.Actual ??= this.Target.GenerateCode();
+        }
     }
 
     [TestMethod]
@@ -103,32 +107,35 @@ public abstract class CodeGeneratorTestsBase
 
     protected void CompileGeneratedCode()
     {
-        if (this.CompilerResults is not null)
+        lock (this.staticData)
         {
-            Assert.IsNotNull(this.GeneratedType);
-            return;
+            if (this.CompilerResults is not null)
+            {
+                Assert.IsNotNull(this.GeneratedType);
+                return;
+            }
+
+            Assert.IsNotNull(this.Target);
+            Assert.IsNotNull(this.Target.Provider);
+
+            // Invoke compilation.
+            var compilerParameters = GetCompilerParameters(this.Target.Provider);
+            CompilerResults = this.Target.Provider.CompileAssemblyFromDom(
+                compilerParameters, this.Target.CodeCompileUnit, GenerateClassesInConflictingNamespaces());
+
+            Debug.WriteLine($"Compiler returned {CompilerResults.NativeCompilerReturnValue}");
+            Debug.WriteLine($"Output:\n{string.Join("\n", CompilerResults.Output.OfType<string>())}");
+            Debug.WriteLine(null);
+            Debug.WriteLine($"Environment.CurrentDirectory     ={Environment.CurrentDirectory}");
+            Debug.WriteLine($"CompilerResults.PathToAssembly   ={this.CompilerResults.PathToAssembly}");
+            Debug.WriteLine($"CompilerResults.TempFiles.TempDir={this.CompilerResults.TempFiles.TempDir}");
+            Debug.WriteLine($"CompilerResults.TempFiles.Count  ={this.CompilerResults.TempFiles.Count}");
+            Debug.WriteLine($"CompilerResults.TempFiles        ={string.Join(", ", this.CompilerResults.TempFiles.OfType<string>())}");
+            Debug.WriteLine($"CompilerResults.Errors.Count     ={this.CompilerResults.Errors.Count}");
+            Debug.WriteLine($"CompilerResults.CompiledAssembly.Location={this.CompilerResults.CompiledAssembly.Location}");
+
+            this.GeneratedType = CompilerResults.CompiledAssembly.GetType("TestApp.Resources");
         }
-
-        Assert.IsNotNull(this.Target);
-        Assert.IsNotNull(this.Target.Provider);
-
-        // Invoke compilation.
-        var compilerParameters = GetCompilerParameters(this.Target.Provider);
-        CompilerResults = this.Target.Provider.CompileAssemblyFromDom(
-            compilerParameters, this.Target.CodeCompileUnit, GenerateClassesInConflictingNamespaces());
-
-        Debug.WriteLine($"Compiler returned {CompilerResults.NativeCompilerReturnValue}");
-        Debug.WriteLine($"Output:\n{string.Join("\n", CompilerResults.Output.OfType<string>())}");
-        Debug.WriteLine(null);
-        Debug.WriteLine($"Environment.CurrentDirectory     ={Environment.CurrentDirectory}");
-        Debug.WriteLine($"CompilerResults.PathToAssembly   ={this.CompilerResults.PathToAssembly}");
-        Debug.WriteLine($"CompilerResults.TempFiles.TempDir={this.CompilerResults.TempFiles.TempDir}");
-        Debug.WriteLine($"CompilerResults.TempFiles.Count  ={this.CompilerResults.TempFiles.Count}");
-        Debug.WriteLine($"CompilerResults.TempFiles        ={string.Join(", ", this.CompilerResults.TempFiles.OfType<string>())}");
-        Debug.WriteLine($"CompilerResults.Errors.Count     ={this.CompilerResults.Errors.Count}");
-        Debug.WriteLine($"CompilerResults.CompiledAssembly.Location={this.CompilerResults.CompiledAssembly.Location}");
-
-        this.GeneratedType = CompilerResults.CompiledAssembly.GetType("TestApp.Resources");
     }
 
     private static CodeCompileUnit GenerateClassesInConflictingNamespaces()

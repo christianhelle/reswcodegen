@@ -6,7 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests;
 
 [TestClass]
-[DeploymentItem("Resources/Resources.resw")]
 public sealed class CSharpCodeGeneratorTestsInternal : CodeGeneratorTestsBase
 {
     #region A static field (to avoid repeating the same work for each test)
@@ -14,7 +13,7 @@ public sealed class CSharpCodeGeneratorTestsInternal : CodeGeneratorTestsBase
     #endregion
 
     public CSharpCodeGeneratorTestsInternal()
-        : base(s_staticData, TypeAttributes.NestedAssembly, new CSharpCodeProvider())
+        : base(s_staticData, TypeAttributes.NotPublic, new CSharpCodeProvider())
     {
     }
 
