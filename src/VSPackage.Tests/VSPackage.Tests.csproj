@@ -6,7 +6,7 @@
     <RootNamespace>ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests</RootNamespace>
     <ProjectGuid>{F2B82735-4AE9-4365-8C0D-8391564359AB}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <TargetFramework>net481-windows</TargetFramework>
+    <TargetFramework>net481</TargetFramework>
     <LangVersion>13.0</LangVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppDesignerFolder>Properties</AppDesignerFolder>
