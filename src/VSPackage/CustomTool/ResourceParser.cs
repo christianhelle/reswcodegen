@@ -11,7 +11,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             ReswFileContents = reswFileContents;
         }
 
-        public string ReswFileContents { get; set; }
+        public string ReswFileContents { get; private set; }
 
         public List<ResourceItem> Parse()
         {

@@ -1,76 +1,84 @@
-﻿using System.IO;
 using System.Linq;
 using System.Reflection;
-using ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool;
 using Microsoft.VisualBasic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests
+namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.CustomTool.Tests;
+
+[TestClass]
+public sealed class VisualBasicCodeGeneratorInternalTests : CodeGeneratorTestsBase
 {
-    [TestClass]
-    [DeploymentItem("Resources/Resources.resw")]
-    public class VisualBasicCodeGeneratorInternalTests
+    #region A static field (to avoid repeating the same work for each test)
+    private static readonly StaticData s_staticData = new();
+    #endregion
+
+    public VisualBasicCodeGeneratorInternalTests()
+        : base(s_staticData, TypeAttributes.NotPublic, new VBCodeProvider())
     {
-        private const string FILE_PATH = "Resources.resw";
-        private string actual;
-        private string reswFileContents;
-        private ICodeGenerator target;
+    }
 
-        [TestInitialize]
-        public void Initialize()
+    [TestMethod]
+    public void GeneratedCodeIsFriendClass()
+    {
+        CompileGeneratedCode();
+
+        Assert.Contains("Partial Friend NotInheritable Class", Actual);
+        Assert.IsFalse(GeneratedType.IsNested);
+        Assert.IsTrue(GeneratedType.IsNotPublic);
+        Assert.IsTrue(GeneratedType.IsSealed);
+        Assert.IsTrue(GeneratedType.IsClass);
+    }
+
+    [TestMethod]
+    public void GeneratedCodeContainsPropertiesDefinedInResources()
+    {
+        CompileGeneratedCode();
+
+        var resourceItems = Target.ResourceParser.Parse();
+
+        foreach (var item in resourceItems)
         {
-            reswFileContents = File.ReadAllText(FILE_PATH);
+            var name = item.Name.Replace(".", "_");
+            var nameProperty = $"Public Shared ReadOnly Property {name}() As String";
+            Assert.Contains(nameProperty, Actual);
+            Assert.IsNotNull(GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static));
 
-            target = new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", reswFileContents, new VBCodeProvider(), TypeAttributes.NestedAssembly);
-            actual = target.GenerateCode();
+            var propertyInfo = GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static);
+            Assert.IsNotNull(propertyInfo);
+            Assert.IsTrue(propertyInfo.PropertyType == typeof(string));
         }
+    }
 
-        [TestMethod]
-        public void GenerateCodeDoesNotReturnNull()
+    [TestMethod]
+    public void GeneratedCodeReplacesDottedKeysWithForwardSlash()
+    {
+        var resourceItems = Target.ResourceParser.Parse();
+
+        foreach (var item in resourceItems)
         {
-            Assert.IsNotNull(actual);
+            var name = $"GetString(\"{item.Name.Replace(".", "/")}\")";
+            Assert.Contains(name, Actual);
         }
+    }
 
-        [TestMethod]
-        public void GeneratedCodeIsFriendClass()
-        {
-            Assert.IsTrue(actual.Contains("Partial Friend NotInheritable Class"));
-        }
+    [TestMethod]
+    public void GeneratedCodePropertiesContainsCommentsSimilarToValuesDefinedInResources()
+    {
+        var resourceItems = Target.ResourceParser.Parse();
 
-        [TestMethod]
-        public void GeneratedCodeContainsPropertiesDefinedInResources()
-        {
-            var resourceItems = target.ResourceParser.Parse();
+        foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
+            Assert.Contains("Localized resource similar to \"" + item.Value + "\"", Actual);
+    }
 
-            foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
-                Assert.IsTrue(actual.Contains("Public Shared ReadOnly Property " + item.Name + "() As String"));
-        }
+    [TestMethod]
+    public void ClassNameEqualsFileNameWithoutExtension()
+    {
+        Assert.Contains("Class Resources", Actual);
+    }
 
-        [TestMethod]
-        public void GeneratedCodePropertiesContainsCommentsSimilarToValuesDefinedInResources()
-        {
-            var resourceItems = target.ResourceParser.Parse();
-
-            foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
-                Assert.IsTrue(actual.Contains("Localized resource similar to \"" + item.Value + "\""));
-        }
-
-        [TestMethod]
-        public void ClassNameEqualsFileNameWithoutExtension()
-        {
-            Assert.IsTrue(actual.Contains("Class Resources"));
-        }
-
-        [TestMethod]
-        public void ResourceLoaderInitializedWithClassName()
-        {
-            Assert.IsTrue(actual.Contains("ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\")"));
-        }
-
-        [TestMethod]
-        public void ContainsProjectUrl()
-        {
-            Assert.IsTrue(actual.Contains("http://bit.ly/reswcodegen"));
-        }
+    [TestMethod]
+    public void ResourceLoaderInitializedWithClassName()
+    {
+        Assert.Contains("ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\")", Actual);
     }
 }

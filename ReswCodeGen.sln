@@ -1,0 +1,112 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+		.github\FUNDING.yml = .github\FUNDING.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{83D600CF-F578-458C-8737-DCC710F97543}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Marketplace.md = docs\Marketplace.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{78F52FB4-DC91-4DA3-B9F0-43276BC4A3E9}"
+	ProjectSection(SolutionItems) = preProject
+		images\internalreswfilecodegenerator-customtool.png = images\internalreswfilecodegenerator-customtool.png
+		images\reswfilecodegenerator-customtool.png = images\reswfilecodegenerator-customtool.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D12A79D7-D19C-44C8-901D-630AD5882B3D}"
+	ProjectSection(SolutionItems) = preProject
+		src\build.cake = src\build.cake
+		src\build.ps1 = src\build.ps1
+		src\global.json = src\global.json
+		src\publish-manifest.json = src\publish-manifest.json
+		src\publish.ps1 = src\publish.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "reswcodegen", "reswcodegen", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		global.json = global.json
+		LICENSE = LICENSE
+		README.md = README.md
+		renovate.json = renovate.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{8118C652-FD8B-4E35-8999-8F497CDDA268}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\release.yml = .github\workflows\release.yml
+		.github\workflows\vsix.yml = .github\workflows\vsix.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage", "src\VSPackage\VSPackage.csproj", "{05F77BFB-CE11-4948-8174-F938C5B7F31C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage.Tests", "src\VSPackage.Tests\VSPackage.Tests.csproj", "{F2B82735-4AE9-4365-8C0D-8391564359AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|arm64 = Debug|arm64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|arm64 = Release|arm64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Debug|arm64.ActiveCfg = Debug|arm64
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Debug|arm64.Build.0 = Debug|arm64
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Debug|x64.Build.0 = Debug|Any CPU
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Debug|x86.ActiveCfg = Debug|x86
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Debug|x86.Build.0 = Debug|x86
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Release|arm64.ActiveCfg = Release|arm64
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Release|arm64.Build.0 = Release|arm64
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Release|x64.ActiveCfg = Release|Any CPU
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Release|x64.Build.0 = Release|Any CPU
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Release|x86.ActiveCfg = Release|x86
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C}.Release|x86.Build.0 = Release|x86
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Debug|arm64.Build.0 = Debug|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Debug|x64.Build.0 = Debug|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Debug|x86.Build.0 = Debug|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Release|arm64.ActiveCfg = Release|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Release|arm64.Build.0 = Release|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Release|x64.ActiveCfg = Release|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Release|x64.Build.0 = Release|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Release|x86.ActiveCfg = Release|Any CPU
+		{F2B82735-4AE9-4365-8C0D-8391564359AB}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{83D600CF-F578-458C-8737-DCC710F97543} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{78F52FB4-DC91-4DA3-B9F0-43276BC4A3E9} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{D12A79D7-D19C-44C8-901D-630AD5882B3D} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{8118C652-FD8B-4E35-8999-8F497CDDA268} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{05F77BFB-CE11-4948-8174-F938C5B7F31C} = {D12A79D7-D19C-44C8-901D-630AD5882B3D}
+		{F2B82735-4AE9-4365-8C0D-8391564359AB} = {D12A79D7-D19C-44C8-901D-630AD5882B3D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48967710-219C-4F15-BDD3-E9113192CE07}
+	EndGlobalSection
+EndGlobal

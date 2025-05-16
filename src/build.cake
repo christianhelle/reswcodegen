@@ -14,9 +14,9 @@ Task("Clean")
 
 Task("Restore")
     .IsDependentOn("Clean")
-	.Does(() =>
+    .Does(() =>
 {
-	Information("Restoring solution...");
+    Information("Restoring solution...");
     DotNetRestore(solutionPath.ToString());
 });
 
@@ -46,6 +46,6 @@ Task("Post-Build")
     });
 
 Task("Default")
-	.IsDependentOn("Post-Build");
+    .IsDependentOn("Post-Build");
 
 RunTarget(target);

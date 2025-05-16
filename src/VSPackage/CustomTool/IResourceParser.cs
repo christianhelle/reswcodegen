@@ -4,7 +4,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
 {
     public interface IResourceParser
     {
-        string ReswFileContents { get; set; }
+        string ReswFileContents { get; }
         List<ResourceItem> Parse();
     }
 }
