@@ -22,7 +22,7 @@ public sealed class CSharpCodeGeneratorTestsInternal : CodeGeneratorTestsBase
     {
         CompileGeneratedCode();
 
-        Assert.Contains("internal sealed partial class", Actual);
+        StringAssert.Contains(Actual, "internal sealed partial class");
         Assert.IsFalse(GeneratedType.IsNested);
         Assert.IsTrue(GeneratedType.IsNotPublic);
         Assert.IsTrue(GeneratedType.IsSealed);
@@ -40,7 +40,7 @@ public sealed class CSharpCodeGeneratorTestsInternal : CodeGeneratorTestsBase
         {
             var name = item.Name.Replace(".", "_");
             var nameProperty = $"public static string {name}";
-            Assert.Contains(nameProperty, Actual);
+            StringAssert.Contains(Actual, nameProperty);
 
             var propertyInfo = GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static);
             Assert.IsTrue(propertyInfo != null);
@@ -54,18 +54,18 @@ public sealed class CSharpCodeGeneratorTestsInternal : CodeGeneratorTestsBase
         var resourceItems = Target.ResourceParser.Parse();
 
         foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
-            Assert.Contains("Localized resource similar to \"" + item.Value + "\"", Actual);
+            StringAssert.Contains(Actual, "Localized resource similar to \"" + item.Value + "\"");
     }
 
     [TestMethod]
     public void ClassNameEqualsFileNameWithoutExtension()
     {
-        Assert.Contains("class Resources", Actual);
+        StringAssert.Contains(Actual, "class Resources");
     }
 
     [TestMethod]
     public void ResourceLoaderInitializedWithClassName()
     {
-        Assert.Contains("ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\");", Actual);
+        StringAssert.Contains(Actual, "ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\");");
     }
 }

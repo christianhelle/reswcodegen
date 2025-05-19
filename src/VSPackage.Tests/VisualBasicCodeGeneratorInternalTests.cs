@@ -22,7 +22,7 @@ public sealed class VisualBasicCodeGeneratorInternalTests : CodeGeneratorTestsBa
     {
         CompileGeneratedCode();
 
-        Assert.Contains("Partial Friend NotInheritable Class", Actual);
+        StringAssert.Contains(Actual, "Partial Friend NotInheritable Class");
         Assert.IsFalse(GeneratedType.IsNested);
         Assert.IsTrue(GeneratedType.IsNotPublic);
         Assert.IsTrue(GeneratedType.IsSealed);
@@ -40,7 +40,7 @@ public sealed class VisualBasicCodeGeneratorInternalTests : CodeGeneratorTestsBa
         {
             var name = item.Name.Replace(".", "_");
             var nameProperty = $"Public Shared ReadOnly Property {name}() As String";
-            Assert.Contains(nameProperty, Actual);
+            StringAssert.Contains(Actual, nameProperty);
             Assert.IsNotNull(GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static));
 
             var propertyInfo = GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static);
@@ -57,7 +57,7 @@ public sealed class VisualBasicCodeGeneratorInternalTests : CodeGeneratorTestsBa
         foreach (var item in resourceItems)
         {
             var name = $"GetString(\"{item.Name.Replace(".", "/")}\")";
-            Assert.Contains(name, Actual);
+            StringAssert.Contains(Actual, name);
         }
     }
 
@@ -67,18 +67,18 @@ public sealed class VisualBasicCodeGeneratorInternalTests : CodeGeneratorTestsBa
         var resourceItems = Target.ResourceParser.Parse();
 
         foreach (var item in resourceItems.Where(item => !item.Name.Contains(".")))
-            Assert.Contains("Localized resource similar to \"" + item.Value + "\"", Actual);
+            StringAssert.Contains(Actual, "Localized resource similar to \"" + item.Value + "\"");
     }
 
     [TestMethod]
     public void ClassNameEqualsFileNameWithoutExtension()
     {
-        Assert.Contains("Class Resources", Actual);
+        StringAssert.Contains(Actual, "Class Resources");
     }
 
     [TestMethod]
     public void ResourceLoaderInitializedWithClassName()
     {
-        Assert.Contains("ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\")", Actual);
+        StringAssert.Contains(Actual, "ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\")");
     }
 }

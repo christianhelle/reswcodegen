@@ -102,7 +102,7 @@ public abstract class CodeGeneratorTestsBase
     [TestMethod]
     public void ContainsProjectUrl()
     {
-        Assert.Contains("http://bit.ly/reswcodegen", Actual);
+        StringAssert.Contains(Actual, "http://bit.ly/reswcodegen");
     }
 
     protected void CompileGeneratedCode()

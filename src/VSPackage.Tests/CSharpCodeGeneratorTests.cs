@@ -21,7 +21,7 @@ public sealed class CSharpCodeGeneratorTests : CodeGeneratorTestsBase
     {
         CompileGeneratedCode();
 
-        Assert.Contains("public sealed partial class", this.Actual);
+        StringAssert.Contains(this.Actual, "public sealed partial class");
         Assert.IsFalse(this.GeneratedType.IsNested);
         Assert.IsTrue(this.GeneratedType.IsPublic);
         Assert.IsTrue(this.GeneratedType.IsSealed);
@@ -39,7 +39,7 @@ public sealed class CSharpCodeGeneratorTests : CodeGeneratorTestsBase
         {
             var name = item.Name.Replace(".", "_");
             var nameProperty = $"public static string {name}";
-            Assert.Contains(nameProperty, this.Actual);
+            StringAssert.Contains(this.Actual, nameProperty);
             Assert.IsTrue(this.GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static) != null);
 
             var propertyInfo = this.GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static);
@@ -56,7 +56,7 @@ public sealed class CSharpCodeGeneratorTests : CodeGeneratorTestsBase
         foreach (var item in resourceItems)
         {
             var name = $"GetString(\"{item.Name.Replace(".", "/")}\")";
-            Assert.Contains(name, this.Actual);
+            StringAssert.Contains(this.Actual, name);
         }
     }
 
@@ -66,18 +66,18 @@ public sealed class CSharpCodeGeneratorTests : CodeGeneratorTestsBase
         var resourceItems = this.Target.ResourceParser.Parse();
 
         foreach (var item in resourceItems)
-            Assert.Contains("Localized resource similar to \"" + item.Value + "\"", this.Actual);
+            StringAssert.Contains(this.Actual, "Localized resource similar to \"" + item.Value + "\"");
     }
 
     [TestMethod]
     public void ClassNameEqualsFileNameWithoutExtension()
     {
-        Assert.Contains("class Resources", this.Actual);
+        StringAssert.Contains(this.Actual, "class Resources");
     }
 
     [TestMethod]
     public void ResourceLoaderInitializedWithClassName()
     {
-        Assert.Contains("ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\");", this.Actual);
+        StringAssert.Contains(this.Actual, "ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\");");
     }
 }
