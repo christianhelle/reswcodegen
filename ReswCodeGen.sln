@@ -24,19 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D12A79D7-D19
 	ProjectSection(SolutionItems) = preProject
 		src\build.cake = src\build.cake
 		src\build.ps1 = src\build.ps1
-		src\global.json = src\global.json
 		src\publish-manifest.json = src\publish-manifest.json
 		src\publish.ps1 = src\publish.ps1
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "reswcodegen", "reswcodegen", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		.gitignore = .gitignore
-		global.json = global.json
-		LICENSE = LICENSE
-		README.md = README.md
-		renovate.json = renovate.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{8118C652-FD8B-4E35-8999-8F497CDDA268}"
@@ -48,6 +37,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage", "src\VSPackage\VSPackage.csproj", "{05F77BFB-CE11-4948-8174-F938C5B7F31C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSPackage.Tests", "src\VSPackage.Tests\VSPackage.Tests.csproj", "{F2B82735-4AE9-4365-8C0D-8391564359AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".root", ".root", "{EB6B0469-15DB-4781-9506-E14C0228522A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		global.json = global.json
+		LICENSE = LICENSE
+		README.md = README.md
+		renovate.json = renovate.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,10 +97,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
-		{83D600CF-F578-458C-8737-DCC710F97543} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
-		{78F52FB4-DC91-4DA3-B9F0-43276BC4A3E9} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
-		{D12A79D7-D19C-44C8-901D-630AD5882B3D} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
 		{8118C652-FD8B-4E35-8999-8F497CDDA268} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{05F77BFB-CE11-4948-8174-F938C5B7F31C} = {D12A79D7-D19C-44C8-901D-630AD5882B3D}
 		{F2B82735-4AE9-4365-8C0D-8391564359AB} = {D12A79D7-D19C-44C8-901D-630AD5882B3D}

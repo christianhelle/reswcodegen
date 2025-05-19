@@ -10,6 +10,7 @@
     <LangVersion>13.0</LangVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppDesignerFolder>Properties</AppDesignerFolder>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <TestingExtensionsProfile>None</TestingExtensionsProfile>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
