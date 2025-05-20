@@ -84,19 +84,20 @@ public abstract class CodeGeneratorTestsBase
     }
 
     [TestMethod]
+    [Priority(0)]
     public void GenerateCodeDoesNotReturnNull()
     {
         Assert.IsNotNull(this.Actual);
     }
 
     [TestMethod]
+    [Priority(1)]
     public void GeneratedCodeCompilesCleanly()
     {
         this.CompileGeneratedCode();
 
         Assert.IsFalse(this.CompilerResults.Errors.HasErrors, string.Join("\n", this.CompilerResults.Output.OfType<string>()));
         Assert.IsFalse(this.CompilerResults.Errors.HasWarnings, string.Join("\n", this.CompilerResults.Output.OfType<string>()));
-        Assert.IsNotNull(this.GeneratedType);
     }
 
     [TestMethod]
@@ -117,24 +118,27 @@ public abstract class CodeGeneratorTestsBase
 
             Assert.IsNotNull(this.Target);
             Assert.IsNotNull(this.Target.Provider);
+            Assert.IsNull(this.GeneratedType);
 
             // Invoke compilation.
             var compilerParameters = GetCompilerParameters(this.Target.Provider);
             this.CompilerResults = this.Target.Provider.CompileAssemblyFromDom(
-                compilerParameters, this.Target.CodeCompileUnit, GenerateClassesInConflictingNamespaces());
+            compilerParameters, this.Target.CodeCompileUnit, GenerateClassesInConflictingNamespaces());
 
-            Debug.WriteLine($"Compiler returned {this.CompilerResults.NativeCompilerReturnValue}");
-            Debug.WriteLine($"Output:\n{string.Join("\n", this.CompilerResults.Output.OfType<string>())}");
-            Debug.WriteLine(null);
-            Debug.WriteLine($"Environment.CurrentDirectory     ={Environment.CurrentDirectory}");
-            Debug.WriteLine($"CompilerResults.PathToAssembly   ={this.CompilerResults.PathToAssembly}");
-            Debug.WriteLine($"CompilerResults.TempFiles.TempDir={this.CompilerResults.TempFiles.TempDir}");
-            Debug.WriteLine($"CompilerResults.TempFiles.Count  ={this.CompilerResults.TempFiles.Count}");
-            Debug.WriteLine($"CompilerResults.TempFiles        ={string.Join(", ", this.CompilerResults.TempFiles.OfType<string>())}");
-            Debug.WriteLine($"CompilerResults.Errors.Count     ={this.CompilerResults.Errors.Count}");
-            Debug.WriteLine($"CompilerResults.CompiledAssembly.Location={this.CompilerResults.CompiledAssembly.Location}");
-
+            Assert.IsNotNull(this.CompilerResults.CompiledAssembly);
             this.GeneratedType = this.CompilerResults.CompiledAssembly.GetType("TestApp.Resources");
+            Assert.IsNotNull(this.GeneratedType);
+
+            Debug.WriteLineIf(Debugger.IsAttached, $"Compiler returned {this.CompilerResults.NativeCompilerReturnValue}");
+            Debug.WriteLineIf(Debugger.IsAttached, $"Output:\n{string.Join("\n", this.CompilerResults.Output.OfType<string>())}");
+            Debug.WriteLineIf(Debugger.IsAttached, null);
+            Debug.WriteLineIf(Debugger.IsAttached, $"Environment.CurrentDirectory     ={Environment.CurrentDirectory}");
+            Debug.WriteLineIf(Debugger.IsAttached, $"CompilerResults.PathToAssembly   ={this.CompilerResults.PathToAssembly}");
+            Debug.WriteLineIf(Debugger.IsAttached, $"CompilerResults.TempFiles.TempDir={this.CompilerResults.TempFiles.TempDir}");
+            Debug.WriteLineIf(Debugger.IsAttached, $"CompilerResults.TempFiles.Count  ={this.CompilerResults.TempFiles.Count}");
+            Debug.WriteLineIf(Debugger.IsAttached, $"CompilerResults.TempFiles        ={string.Join(", ", this.CompilerResults.TempFiles.OfType<string>())}");
+            Debug.WriteLineIf(Debugger.IsAttached, $"CompilerResults.Errors.Count     ={this.CompilerResults.Errors.Count}");
+            Debug.WriteLineIf(Debugger.IsAttached, $"CompilerResults.CompiledAssembly.Location={this.CompilerResults.CompiledAssembly.Location}");
         }
     }
 
