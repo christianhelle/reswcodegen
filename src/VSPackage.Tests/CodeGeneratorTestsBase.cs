@@ -77,7 +77,7 @@ public abstract class CodeGeneratorTestsBase
 
             this.ReswFileContents ??= File.ReadAllText(FILE_PATH);
 
-            this.Target ??= new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", ReswFileContents, Provider, classAccessibility);
+            this.Target ??= new CodeGeneratorFactory().Create(FILE_PATH.Replace(".resw", string.Empty), "TestApp", this.ReswFileContents, Provider, classAccessibility);
             this.Provider = this.Target.Provider;
             this.Actual ??= this.Target.GenerateCode();
         }
@@ -86,7 +86,7 @@ public abstract class CodeGeneratorTestsBase
     [TestMethod]
     public void GenerateCodeDoesNotReturnNull()
     {
-        Assert.IsNotNull(Actual);
+        Assert.IsNotNull(this.Actual);
     }
 
     [TestMethod]
@@ -94,15 +94,15 @@ public abstract class CodeGeneratorTestsBase
     {
         this.CompileGeneratedCode();
 
-        Assert.IsFalse(CompilerResults.Errors.HasErrors, string.Join("\n", CompilerResults.Output.OfType<string>()));
-        Assert.IsFalse(CompilerResults.Errors.HasWarnings, string.Join("\n", CompilerResults.Output.OfType<string>()));
-        Assert.IsNotNull(GeneratedType);
+        Assert.IsFalse(this.CompilerResults.Errors.HasErrors, string.Join("\n", this.CompilerResults.Output.OfType<string>()));
+        Assert.IsFalse(this.CompilerResults.Errors.HasWarnings, string.Join("\n", this.CompilerResults.Output.OfType<string>()));
+        Assert.IsNotNull(this.GeneratedType);
     }
 
     [TestMethod]
     public void ContainsProjectUrl()
     {
-        StringAssert.Contains(Actual, "http://bit.ly/reswcodegen");
+        StringAssert.Contains(this.Actual, "http://bit.ly/reswcodegen");
     }
 
     protected void CompileGeneratedCode()
@@ -120,11 +120,11 @@ public abstract class CodeGeneratorTestsBase
 
             // Invoke compilation.
             var compilerParameters = GetCompilerParameters(this.Target.Provider);
-            CompilerResults = this.Target.Provider.CompileAssemblyFromDom(
+            this.CompilerResults = this.Target.Provider.CompileAssemblyFromDom(
                 compilerParameters, this.Target.CodeCompileUnit, GenerateClassesInConflictingNamespaces());
 
-            Debug.WriteLine($"Compiler returned {CompilerResults.NativeCompilerReturnValue}");
-            Debug.WriteLine($"Output:\n{string.Join("\n", CompilerResults.Output.OfType<string>())}");
+            Debug.WriteLine($"Compiler returned {this.CompilerResults.NativeCompilerReturnValue}");
+            Debug.WriteLine($"Output:\n{string.Join("\n", this.CompilerResults.Output.OfType<string>())}");
             Debug.WriteLine(null);
             Debug.WriteLine($"Environment.CurrentDirectory     ={Environment.CurrentDirectory}");
             Debug.WriteLine($"CompilerResults.PathToAssembly   ={this.CompilerResults.PathToAssembly}");
@@ -134,7 +134,7 @@ public abstract class CodeGeneratorTestsBase
             Debug.WriteLine($"CompilerResults.Errors.Count     ={this.CompilerResults.Errors.Count}");
             Debug.WriteLine($"CompilerResults.CompiledAssembly.Location={this.CompilerResults.CompiledAssembly.Location}");
 
-            this.GeneratedType = CompilerResults.CompiledAssembly.GetType("TestApp.Resources");
+            this.GeneratedType = this.CompilerResults.CompiledAssembly.GetType("TestApp.Resources");
         }
     }
 

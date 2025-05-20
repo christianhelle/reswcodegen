@@ -40,7 +40,6 @@ public sealed class CSharpCodeGeneratorTests : CodeGeneratorTestsBase
             var name = item.Name.Replace(".", "_");
             var nameProperty = $"public static string {name}";
             StringAssert.Contains(this.Actual, nameProperty);
-            Assert.IsTrue(this.GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static) != null);
 
             var propertyInfo = this.GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static);
             Assert.IsTrue(propertyInfo != null);
@@ -66,7 +65,7 @@ public sealed class CSharpCodeGeneratorTests : CodeGeneratorTestsBase
         var resourceItems = this.Target.ResourceParser.Parse();
 
         foreach (var item in resourceItems)
-            StringAssert.Contains(this.Actual, "Localized resource similar to \"" + item.Value + "\"");
+            StringAssert.Contains(this.Actual, $"Localized resource similar to \"{item.Value}\"");
     }
 
     [TestMethod]

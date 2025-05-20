@@ -21,11 +21,11 @@ public sealed class VisualBasicCodeGeneratorTests : CodeGeneratorTestsBase
     {
         CompileGeneratedCode();
 
-        StringAssert.Contains(Actual, "Partial Public NotInheritable Class");
-        Assert.IsFalse(GeneratedType.IsNested);
-        Assert.IsTrue(GeneratedType.IsPublic);
-        Assert.IsTrue(GeneratedType.IsSealed);
-        Assert.IsTrue(GeneratedType.IsClass);
+        StringAssert.Contains(this.Actual, "Partial Public NotInheritable Class");
+        Assert.IsFalse(this.GeneratedType.IsNested);
+        Assert.IsTrue(this.GeneratedType.IsPublic);
+        Assert.IsTrue(this.GeneratedType.IsSealed);
+        Assert.IsTrue(this.GeneratedType.IsClass);
     }
 
     [TestMethod]
@@ -33,16 +33,15 @@ public sealed class VisualBasicCodeGeneratorTests : CodeGeneratorTestsBase
     {
         CompileGeneratedCode();
 
-        var resourceItems = Target.ResourceParser.Parse();
+        var resourceItems = this.Target.ResourceParser.Parse();
 
         foreach (var item in resourceItems)
         {
             var name = item.Name.Replace(".", "_");
             var nameProperty = $"Public Shared ReadOnly Property {name}() As String";
-            StringAssert.Contains(Actual, nameProperty);
-            Assert.IsNotNull(GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static));
+            StringAssert.Contains(this.Actual, nameProperty);
 
-            var propertyInfo = GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static);
+            var propertyInfo = this.GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static);
             Assert.IsNotNull(propertyInfo);
             Assert.IsTrue(propertyInfo.PropertyType == typeof(string));
         }
@@ -51,33 +50,33 @@ public sealed class VisualBasicCodeGeneratorTests : CodeGeneratorTestsBase
     [TestMethod]
     public void GeneratedCodeReplacesDottedKeysWithForwardSlash()
     {
-        var resourceItems = Target.ResourceParser.Parse();
+        var resourceItems = this.Target.ResourceParser.Parse();
 
         foreach (var item in resourceItems)
         {
             var value = $"GetString(\"{item.Name.Replace(".", "/")}\")";
-            StringAssert.Contains(Actual, value);
+            StringAssert.Contains(this.Actual, value);
         }
     }
 
     [TestMethod]
     public void GeneratedCodePropertiesContainsCommentsSimilarToValuesDefinedInResources()
     {
-        var resourceItems = Target.ResourceParser.Parse();
+        var resourceItems = this.Target.ResourceParser.Parse();
 
         foreach (var item in resourceItems)
-            StringAssert.Contains(Actual, "Localized resource similar to \"" + item.Value + "\"");
+            StringAssert.Contains(this.Actual, $"Localized resource similar to \"{item.Value}\"");
     }
 
     [TestMethod]
     public void ClassNameEqualsFileNameWithoutExtension()
     {
-        StringAssert.Contains(Actual, "Class Resources");
+        StringAssert.Contains(this.Actual, "Class Resources");
     }
 
     [TestMethod]
     public void ResourceLoaderInitializedWithClassName()
     {
-        StringAssert.Contains(Actual, "ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\")");
+        StringAssert.Contains(this.Actual, "ResourceLoader.GetForCurrentView(currentAssemblyName + \"/Resources\")");
     }
 }
