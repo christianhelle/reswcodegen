@@ -144,6 +144,15 @@ public abstract class CodeGeneratorTestsBase
 
     private static CodeCompileUnit GenerateClassesInConflictingNamespaces()
     {
+        // If one of the following namespaces contain types, they would conflict with the System.*
+        // and Windows.* types used in the generated code. This was fixed by prefixing these
+        // namespace with Global. (for Visual Basic) or global:: (for C#).
+        //
+        // This method simply adds these "conflicting" namespaces to a CodeCompileUnit included
+        // in the compilation of the generated code. This will ensure that any such global
+        // namespace usage is specified with the appropriate global prefix. If such code does get
+        // generated again, the compilation will fail, which will cause test failures.
+        //
         return new CodeCompileUnit
         {
             Namespaces =
@@ -156,19 +165,6 @@ public abstract class CodeGeneratorTestsBase
 
     private CompilerParameters GetCompilerParameters(CodeDomProvider provider)
     {
-        var compilerOptions = new Dictionary<string, string>
-        {
-            { "lib"      , $"\"{Environment.ExpandEnvironmentVariables(@"%windir%\System32\WinMetadata")}\"" },
-            { "optimize-", null },
-        };
-
-        // The VB compiler has slightly different names for some of its options
-        if (provider.GetType() == typeof(VBCodeProvider))
-        {
-            compilerOptions["libpath"] = compilerOptions["lib"];
-            compilerOptions.Remove("lib");
-        }
-
         var compilerParameters = new CompilerParameters
         {
             // Generate a class library instead of an executable.
@@ -194,7 +190,7 @@ public abstract class CodeGeneratorTestsBase
             TempFiles = new TempFileCollection(".", true),
 
             // Set additional library paths for finding referenced assemblies
-            CompilerOptions = string.Join(" ", compilerOptions.Select(
+            CompilerOptions = string.Join(" ", GetCompilerOptions(provider).Select(
                 kv => string.IsNullOrWhiteSpace(kv.Value) ? $"-{kv.Key}" : $"-{kv.Key}:{kv.Value}")),
 
             // Assemblies referenced by the generated code
@@ -209,6 +205,24 @@ public abstract class CodeGeneratorTestsBase
         };
 
         return compilerParameters;
+    }
+
+    private static IDictionary<string, string> GetCompilerOptions(CodeDomProvider provider)
+    {
+        var compilerOptions = new Dictionary<string, string>
+        {
+            { "lib"      , $"\"{Environment.ExpandEnvironmentVariables(@"%windir%\System32\WinMetadata")}\"" },
+            { "optimize-", null },
+        };
+
+        // The VB compiler has slightly different names for some of its options
+        if (provider is VBCodeProvider)
+        {
+            compilerOptions["libpath"] = compilerOptions["lib"];
+            compilerOptions.Remove("lib");
+        }
+
+        return compilerOptions;
     }
 
     protected sealed class StaticData

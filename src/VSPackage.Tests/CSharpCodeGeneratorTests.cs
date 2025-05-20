@@ -42,7 +42,7 @@ public sealed class CSharpCodeGeneratorTests : CodeGeneratorTestsBase
             StringAssert.Contains(this.Actual, nameProperty);
 
             var propertyInfo = this.GeneratedType.GetProperty(name, BindingFlags.Public | BindingFlags.Static);
-            Assert.IsTrue(propertyInfo != null);
+            Assert.IsNotNull(propertyInfo);
             Assert.IsTrue(propertyInfo.PropertyType == typeof(string));
         }
     }
