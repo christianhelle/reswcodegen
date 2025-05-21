@@ -2,6 +2,9 @@
 
 var target = Argument("target", "Default");
 FilePath solutionPath = File("./ReswCodeGen.sln");
+bool isRunningOnWindows = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
+
+Information($"Running on Windows: {isRunningOnWindows}");
 
 Task("Clean")
     .Does(() =>
@@ -45,7 +48,12 @@ Task("Post-Build")
     .IsDependentOn("Build")
     .Does(() => {
         EnsureDirectoryExists("./Artifacts");
-        CopyFiles("./VSPackage/bin/Release/**/ReswFileCodeGenerator.vsix", "./Artifacts/");
+        if (isRunningOnWindows) {
+            Information("Copying VSIX files to Artifacts directory");
+            CopyFiles("./VSPackage/bin/Release/**/ReswFileCodeGenerator.vsix", "./Artifacts/");
+        } else {
+            Warning("Skipping VSIX file copy on non-Windows platform");
+        }
     });
 
 Task("Default")
