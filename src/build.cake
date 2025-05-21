@@ -24,25 +24,28 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(() => {
         Information("Building solution...");
-        MSBuild(solutionPath, settings =>
-            settings.SetPlatformTarget(PlatformTarget.MSIL)
-                .SetMSBuildPlatform(MSBuildPlatform.x86)
-                .UseToolVersion(MSBuildToolVersion.VS2019)
-                .WithTarget("Build")
-                .SetConfiguration("Release"));
+        DotNetBuild(solutionPath.ToString(), new DotNetBuildSettings {
+            Configuration = "Release",
+            NoRestore = true
+        });
     });
 
 Task("Run-Unit-Tests")
-    .IsDependentOn("Restore")
+    .IsDependentOn("Build")
     .Does(() =>
 {
-    MSTest("./**/bin/Release/*.Tests.dll");
+    DotNetTest(solutionPath.ToString(), new DotNetTestSettings {
+        Configuration = "Release",
+        NoRestore = true,
+        NoBuild = true
+    });
 });
 
 Task("Post-Build")
     .IsDependentOn("Build")
     .Does(() => {
-        CopyFileToDirectory("./VSPackage/bin/Release/ReswFileCodeGenerator.vsix", "./Artifacts/");
+        EnsureDirectoryExists("./Artifacts");
+        CopyFiles("./VSPackage/bin/Release/**/ReswFileCodeGenerator.vsix", "./Artifacts/");
     });
 
 Task("Default")
