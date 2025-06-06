@@ -30,12 +30,12 @@ jobs:
       working-directory: src
       shell: pwsh
 
-    - name: Restore
-      run: dotnet restore ReswCodeGen.sln
-      working-directory: .
-
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.3
+
+    - name: Restore
+      run: msbuild ReswCodeGen.sln /property:Configuration=Release /t:Restore
+      working-directory: .
 
     - name: Build
       run: msbuild ReswCodeGen.sln /property:Configuration=Release /t:Rebuild
