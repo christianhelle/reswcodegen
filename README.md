@@ -66,6 +66,30 @@ By default, the generated class uses the project's default namespace. To specify
 - C#
 - Visual Basic
 
+## Supported Scenarios
+
+- Universal Windows Platform (UWP) applications
+- Windows UI Library (WinUI) 2 and 3 applications
+- .NET 5+ WinUI applications
+- C# and Visual Basic projects
+
+**Limitations:**
+- Only works with .resw files, not .resx files
+- Requires Visual Studio with the extension installed
+- Generated code is read-only; do not modify it manually
+
+## How It Works
+
+The ResW File Code Generator is a Visual Studio Custom Tool that automatically generates C# or Visual Basic code when you save a .resw file. The tool:
+
+1. Parses the XML structure of the .resw file
+2. Extracts resource keys and values
+3. Generates a strongly-typed class with properties for each resource
+4. Handles dotted keys by replacing dots with underscores
+5. Adds XML documentation comments with the resource values
+
+The generated code uses the Windows.ApplicationModel.Resources.ResourceLoader to load resources at runtime.
+
 ## Screenshots
 
 ![ReswFileCodeGenerator Custom Tool](https://github.com/christianhelle/reswcodegen/raw/master/images/reswfilecodegenerator-customtool.png)
