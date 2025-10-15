@@ -31,6 +31,31 @@ Alternatively, download and install the extension directly from the [Visual Stud
 - Supports Visual Studio 2015, 2017, 2019, and 2022
 - Supports dotted keys - Replaces **`.`** with **`_`** (e.g. `Something.Awesome` = `Something_Awesome`)
 
+## Getting Started
+
+1. Create a new UWP or WinUI project in Visual Studio.
+2. Add a new .ResW resource file to your project (right-click project > Add > New Item > Resources File (.resw)).
+3. Add some string resources to the .resw file.
+4. In the Solution Explorer, right-click the .resw file and select Properties.
+5. In the Properties window, set the "Custom Tool" property to "ReswFileCodeGenerator" or "InternalReswFileCodeGenerator".
+6. Save the .resw file. A corresponding .cs or .vb file should be generated automatically.
+7. Use the generated class to access your resources in a type-safe manner.
+
+## Configuration
+
+### Custom Namespace
+
+By default, the generated class uses the project's default namespace. To specify a custom namespace:
+
+1. Right-click the .resw file in Solution Explorer.
+2. Select Properties.
+3. In the "Custom Tool Namespace" property, enter your desired namespace.
+
+### Custom Tool Selection
+
+- Use "ReswFileCodeGenerator" for a public class.
+- Use "InternalReswFileCodeGenerator" for an internal (C#) or friend (VB) class.
+
 ## Custom Tools
 
 - ReswFileCodeGenerator - Generates a public class
