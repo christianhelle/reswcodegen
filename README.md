@@ -9,6 +9,20 @@ A Visual Studio Custom Tool for generating a strongly typed helper class for acc
 
 #### Download from **[Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator)**
 
+## Introduction
+
+.ResW files are XML-based resource files used in Universal Windows Platform (UWP) and Windows UI (WinUI) applications to store localized strings and other resources. The ResW File Code Generator extension provides strongly-typed access to these resources, eliminating the need for string-based resource lookups and reducing the risk of runtime errors due to typos in resource keys.
+
+## Installation
+
+1. Open Visual Studio.
+2. Go to Extensions > Manage Extensions.
+3. Search for "ResW File Code Generator" in the Visual Studio Marketplace.
+4. Click Download, then close Visual Studio to start the installation.
+5. Follow the VSIX installer prompts and restart Visual Studio when prompted.
+
+Alternatively, download and install the extension directly from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator).
+
 ## Features
 
 - Define custom namespace for the generated file
