@@ -21,7 +21,9 @@ public sealed class CodeGeneratorFactoryTests
     public void CodeGeneratorFactoryReturnsValidInstance()
     {
         var target = new CodeGeneratorFactory();
-        var actual = target.Create(CLASS_NAME, "TestApp", reswFileContents);
-        Assert.IsNotNull(actual);
+        using (var actual = target.Create(CLASS_NAME, "TestApp", reswFileContents))
+        {
+            Assert.IsNotNull(actual);
+        }
     }
 }
