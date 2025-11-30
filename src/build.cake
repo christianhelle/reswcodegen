@@ -27,7 +27,7 @@ Task("Build")
         MSBuild(solutionPath, settings =>
             settings.SetPlatformTarget(PlatformTarget.MSIL)
                 .SetMSBuildPlatform(MSBuildPlatform.x86)
-                .UseToolVersion(MSBuildToolVersion.VS2019)
+                .UseToolVersion(MSBuildToolVersion.VS2022)
                 .WithTarget("Build")
                 .SetConfiguration("Release"));
     });

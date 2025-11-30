@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.IO;
 using System.Reflection;
+using System.Security;
 using System.Text;
 using Microsoft.CSharp;
 
@@ -188,7 +189,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                 };
 
                 property.Comments.Add(new CodeCommentStatement("<summary>", true));
-                property.Comments.Add(new CodeCommentStatement("Localized resource similar to \"" + (item.Value ?? item.Name) + "\"", true));
+                property.Comments.Add(new CodeCommentStatement("Localized resource similar to \"" + SecurityElement.Escape(item.Value ?? item.Name) + "\"", true));
                 property.Comments.Add(new CodeCommentStatement("</summary>", true));
                 property.GetStatements.Add(
                     new CodeMethodReturnStatement(
@@ -228,6 +229,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         ~CodeDomCodeGenerator()
@@ -235,16 +237,15 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             Dispose(false);
         }
 
-        protected virtual void Dispose(bool dispose)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposed)
                 return;
             disposed = true;
 
-            if (ownsProvider && dispose)
+            if (ownsProvider && disposing)
             {
                 provider.Dispose();
-                GC.SuppressFinalize(this);
             }
         }
 
