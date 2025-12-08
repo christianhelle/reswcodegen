@@ -36,10 +36,11 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             {
                 var className = ClassNameExtractor.GetClassName(wszInputFilePath);
                 var factory = new CodeGeneratorFactory();
-                var codeGenerator = factory.Create(className, wszDefaultNamespace, bstrInputFileContents, codeDomProvider, classAccessibility);
-                var code = codeGenerator.GenerateCode();
-
-                rgbOutputFileContents[0] = code.ConvertToIntPtr(out pcbOutput);
+                using (var codeGenerator = factory.Create(className, wszDefaultNamespace, bstrInputFileContents, codeDomProvider, classAccessibility))
+                {
+                    var code = codeGenerator.GenerateCode();
+                    rgbOutputFileContents[0] = code.ConvertToIntPtr(out pcbOutput);
+                }
             }
             catch (Exception e)
             {
