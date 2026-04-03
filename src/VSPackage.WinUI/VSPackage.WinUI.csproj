@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.WinUI</RootNamespace>
+    <AssemblyName>ReswFileCodeGenerator.WinUI</AssemblyName>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.0.0.0</Version>
+    <!--
+      This is an out-of-process Visual Studio extension built with the new
+      Microsoft.VisualStudio.Extensibility SDK (VS 2022 17.9+).
+      The Microsoft.VisualStudio.Extensibility.Build package takes care of
+      generating the .vsix artifact from the extension executable.
+    -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Extensibility" Version="17.11.*" />
+    <PackageReference Include="Microsoft.VisualStudio.Extensibility.Build" Version="17.11.*" />
+  </ItemGroup>
+
+</Project>

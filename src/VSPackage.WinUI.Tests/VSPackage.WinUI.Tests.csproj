@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.WinUI.Tests</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!--
+      We test only the code-generation logic (WinUICodeGenerator, ResourceParser, ResourceItem),
+      which is pure cross-platform code. The extension host code (Commands, Extension class)
+      depends on Microsoft.VisualStudio.Extensibility which pulls in Windows-only desktop
+      framework references and therefore cannot be compiled on Linux/macOS.
+      We include the source files directly rather than referencing VSPackage.WinUI.csproj
+      so that this test project remains cross-platform.
+    -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestFramework" Version="3.6.*" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.6.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.*" />
+  </ItemGroup>
+
+  <!-- Include the code-generation source files directly (no Windows SDK dependency) -->
+  <ItemGroup>
+    <Compile Include="../VSPackage.WinUI/CodeGeneration/ResourceItem.cs"
+             Link="CodeGeneration/ResourceItem.cs" />
+    <Compile Include="../VSPackage.WinUI/CodeGeneration/ResourceParser.cs"
+             Link="CodeGeneration/ResourceParser.cs" />
+    <Compile Include="../VSPackage.WinUI/CodeGeneration/WinUICodeGenerator.cs"
+             Link="CodeGeneration/WinUICodeGenerator.cs" />
+  </ItemGroup>
+
+</Project>
