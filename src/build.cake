@@ -1,4 +1,4 @@
-#tool "nuget:?package=Microsoft.TestPlatform&version=18.0.1"
+#tool "nuget:?package=Microsoft.TestPlatform&version=18.4.0"
 
 var target = Argument("target", "Default");
 FilePath solutionPath = File("./ReswCodeGen.sln");
